@@ -2,17 +2,13 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
 import com.example.myapplication.Fragment.FragFree2
-import com.example.myapplication.Fragment.FragData
 import com.example.myapplication.Fragment.FragLab
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okhttp3.*
-import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
@@ -61,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
+
         initViewPager()
         initNavigationBar()
 
@@ -96,9 +93,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         Log.d(TAG, "MainActivity - initViewPager() called")
+        vpMain?.isUserInputEnabled = false
 
         vpMain?.run {
             this.adapter = pagerAdapter
+
             this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
                     val nav = when(position) {

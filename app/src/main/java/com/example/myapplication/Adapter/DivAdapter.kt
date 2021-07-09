@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,10 @@ class DivAdapter (
 
     override fun onBindViewHolder(holder: DivViewHolder, position: Int) {
         val item = dataset[position]
+        val TAG: String = "로그"
+
         holder.divView.setText(item.DivisionResourceId)
+        Log.d(TAG, "DivAdapter - onBindViewHolder() called, position=$position, div=$holder.divView.text")
 //        holder.divButtonView.setOnClickListener{
 //            val context = holder.view.context
 //            val intent = Intent(context, DetailActivity::class.java)

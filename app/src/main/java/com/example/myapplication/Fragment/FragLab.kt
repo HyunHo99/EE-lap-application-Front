@@ -32,7 +32,7 @@ class FragLab : Fragment() {
         val dAdapter = DivAdapter(requireContext(), divList)
         recyclerViewDiv.adapter = dAdapter
 
-        val layout = LinearLayoutManager(activity)
+        val layout = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewDiv.layoutManager = layout
         recyclerViewDiv.setHasFixedSize(true)
 

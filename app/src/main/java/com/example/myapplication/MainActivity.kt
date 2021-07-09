@@ -41,21 +41,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
-        val textView = findViewById<TextView>(R.id.textView2)
-        val client = OkHttpClient()
-        val request = Request.Builder().url(url).post(formBody).build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread{textView.text = "fail to get"}
-            }
-
-
-            override fun onResponse(call: Call, response: Response) {
-                runOnUiThread{textView.text = response?.body?.string()}
-            }
-        })
+//        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
+//        val textView = findViewById<TextView>(R.id.textView2)
+//        val client = OkHttpClient()
+//        val request = Request.Builder().url(url).post(formBody).build()
+//
+//        client.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                runOnUiThread{textView.text = "fail to get"}
+//            }
+//
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                runOnUiThread{textView.text = response?.body?.string()}
+//            }
+//        })
 
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)

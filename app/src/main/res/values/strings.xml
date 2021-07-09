@@ -11,5 +11,6 @@
     <string name="div_sign">신호</string>
 
     <string name="div_color">null</string>
+    <string name="keyword_explanation">Machine learning (ML) is the study of computer algorithms that improve automatically through experience and by the use of data.</string>
 
 </resources>

@@ -1,57 +1,138 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.ui.main.SectionsPagerAdapter
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.myapplication.Fragment.FragFree1
+import com.example.myapplication.Fragment.FragFree2
+import com.example.myapplication.Fragment.FragPost
+import com.example.myapplication.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val fragPo by lazy { FragPost() }
+    private val fragFr1 by lazy { FragFree1() }
+    private val fragFr2 by lazy { FragFree2() }
+
+    val TAG: String = "로그"
+
     private val url = "http://192.249.18.134:80"
 
+    private val fragments: List<Fragment> = listOf(
+        fragPo, fragFr1, fragFr2
+    )
+
+    private val pagerAdapter: MainPagerAdapter by lazy {
+        MainPagerAdapter(this, fragments)
+    }
+
+    var navigation: BottomNavigationView ?= null
+    var vpMain: ViewPager2 ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.textView)
+        val textView = findViewById<TextView>(R.id.textView2)
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
-        client.newCall(request).enqueue(object : Callback{
+
+        client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                textView.text = "fail to get"
+                runOnUiThread{textView.text = "fail to get"}
+
             }
 
 
             override fun onResponse(call: Call, response: Response) {
-                textView.text = response?.body?.string()
+                runOnUiThread{textView.text = response?.body?.string()}
             }
         })
 
 
+        navigation = findViewById<BottomNavigationView>(R.id.navigation)
+        vpMain = findViewById<ViewPager2>(R.id.vp_main)
+        initViewPager()
+        initNavigationBar()
+
+    }
 
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = binding.tabs
-        tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = binding.fab
+    private fun initNavigationBar() {
+        Log.d(TAG, "MainActivity - initNavigationBar() called")
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        try {
+            navigation = findViewById<BottomNavigationView>(R.id.navigation)
+            vpMain = findViewById<ViewPager2>(R.id.vp_main)
+        } catch (e: NullPointerException) {
+            Log.e(TAG, "initNavigationBar: ", e)
+        }
+
+        navigation?.run {
+            this.setOnNavigationItemSelectedListener {
+                val page = when(it.itemId) {
+                    R.id.contact -> 0
+                    R.id.game -> 1
+                    R.id.gallary -> 2
+                    else -> 0
+                }
+                if (page!= vpMain!!.currentItem){
+                    vpMain!!.currentItem = page
+                }
+                true
+            }
+            selectedItemId = R.id.contact
+        }
+    }
+
+    private fun initViewPager() {
+        Log.d(TAG, "MainActivity - initViewPager() called")
+
+        vpMain?.run {
+            this.adapter = pagerAdapter
+            this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                override fun onPageSelected(position: Int) {
+                    val nav = when(position) {
+                        0 -> R.id.contact
+                        1 -> R.id.game
+                        2 -> R.id.gallary
+                        else -> R.id.contact
+                    }
+                    if (navigation!!.selectedItemId != nav) {
+                        navigation!!.selectedItemId = nav
+                    }
+                }
+            })
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

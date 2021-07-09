@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 
-class FragFree1 : Fragment() {
+class FragData : Fragment() {
     val TAG: String = "로그"
     @SuppressLint("SetJavaScriptEnabled")
 
@@ -27,6 +27,6 @@ class FragFree1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_free1, container, false)
+        return inflater.inflate(R.layout.fragment_data, container, false)
     }
 }

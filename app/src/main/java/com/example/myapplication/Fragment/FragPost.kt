@@ -12,6 +12,8 @@ class FragPost : Fragment() {
     val TAG: String = "로그"
     @SuppressLint("SetJavaScriptEnabled")
 
+    private val url = "http://192.249.18.134:80/post"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

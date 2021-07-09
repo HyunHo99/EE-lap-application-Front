@@ -6,18 +6,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.myapplication.Fragment.FragFree1
-import com.example.myapplication.Fragment.FragFree2
 import com.example.myapplication.Fragment.FragPost
-import com.example.myapplication.R
+import com.example.myapplication.Fragment.FragFree2
+import com.example.myapplication.Fragment.FragData
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.*
 import java.io.IOException
 
+
 class MainActivity : AppCompatActivity() {
 
-    private val fragPo by lazy { FragPost() }
-    private val fragFr1 by lazy { FragFree1() }
+    private val fragPo by lazy { FragData() }
+    private val fragFr1 by lazy { FragPost() }
     private val fragFr2 by lazy { FragFree2() }
 
     val TAG: String = "로그"
@@ -41,14 +41,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
         val textView = findViewById<TextView>(R.id.textView2)
         val client = OkHttpClient()
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder().url(url).post(formBody).build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread{textView.text = "fail to get"}
-
             }
 
 

@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
 import com.example.myapplication.Fragment.FragFree2
 import com.example.myapplication.Fragment.FragData
+import com.example.myapplication.Fragment.FragLab
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.*
 import java.io.IOException
@@ -16,7 +17,7 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    private val fragPo by lazy { FragData() }
+    private val fragPo by lazy { FragLab() }
     private val fragFr1 by lazy { FragPost() }
     private val fragFr2 by lazy { FragFree2() }
 

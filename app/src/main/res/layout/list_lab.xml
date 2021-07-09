@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/lab_img"
+            android:layout_alignParentLeft="true"
+            android:layout_marginVertical="10dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/style_round_rectangle"
+            />
+
+        <TextView
+            android:id="@+id/text_professor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강준혁"
+            android:gravity="top"
+            android:textColor="@color/text_main"
+            android:layout_alignTop="@id/lab_img"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/lab_img"/>
+        <TextView
+            android:id="@+id/text_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:textColor="@color/text_main"
+            android:layout_alignTop="@id/lab_img"
+            android:textStyle="bold"
+            android:text="·"
+            android:gravity="top"
+            android:layout_toEndOf="@id/text_professor"/>
+        <TextView
+            android:id="@+id/text_lab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_main"
+            android:layout_alignTop="@id/lab_img"
+            android:textStyle="bold"
+            android:text="고급 통신 연구실"
+            android:gravity="top"
+            android:layout_toEndOf="@id/text_dot"/>
+        <TextView
+            android:id="@+id/text_lab_initial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ArtLab"
+            android:layout_centerVertical="true"
+            android:textColor="@color/eeblue"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/keyword1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="응용수학"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:layout_alignBottom="@id/lab_img"
+            android:gravity="bottom"
+            android:layout_below="@id/text_professor"
+            android:layout_alignLeft="@id/text_professor"
+            />
+        <TextView
+            android:id="@+id/keyword1_comma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", "
+            android:gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:layout_toRightOf="@id/keyword1"
+            android:layout_alignBottom="@id/lab_img"
+            />
+        <TextView
+            android:id="@+id/keyword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="무선통신"
+            android:gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:layout_alignBottom="@id/lab_img"
+            android:layout_toRightOf="@id/keyword1_comma"
+            />
+        <TextView
+            android:id="@+id/keyword2_comma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", "
+            android:gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:layout_toRightOf="@id/keyword2"
+            android:layout_alignBottom="@id/lab_img"
+            />
+        <TextView
+            android:id="@+id/keyword3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="신호처리"
+            android:gravity="bottom"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:layout_alignBottom="@id/lab_img"
+            android:layout_toRightOf="@id/keyword2_comma"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

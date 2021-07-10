@@ -10,13 +10,16 @@ import com.example.myapplication.Fragment.FragSurf3
 
 class FragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
 
-    private val fragSurf1 by lazy { FragSurf1() }
-    private val fragSurf2 by lazy { FragSurf2() }
-    private val fragSurf3 by lazy { FragSurf3() }
+//    private val fragSurf1 by lazy { FragSurf1() }
+//    private val fragSurf2 by lazy { FragSurf2() }
+//    private val fragSurf3 by lazy { FragSurf3() }
 
-    private val fragments: List<Fragment> = listOf(
-        fragSurf1, fragSurf2, fragSurf3
-    )
+    var fragments : ArrayList<Fragment> = ArrayList()
+
+    fun addFragment(fragment: Fragment) {
+        fragments.add(fragment)
+        notifyItemInserted(fragments.size-1)
+    }
 
     override fun getItemCount(): Int = fragments.size
 

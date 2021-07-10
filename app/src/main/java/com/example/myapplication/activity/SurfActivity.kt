@@ -64,11 +64,17 @@ class SurfActivity : AppCompatActivity(){
         fragSurf1.arguments = bundle
         fragSurf2.arguments = bundle
         fragSurf3.arguments = bundle
-        viewPager2.adapter = FragmentAdapter(this)
+        val fAdapter : FragmentAdapter = FragmentAdapter(this)
+        fAdapter.addFragment(fragSurf1)
+        fAdapter.addFragment(fragSurf2)
+        fAdapter.addFragment(fragSurf3)
+        viewPager2.adapter = fAdapter
+
         TabLayoutMediator(tabLayout, viewPager2){
             tab, position ->
             tab.text = tabTextList[position]
         }.attach()
+        Log.d(TAG, "SurfActivity - init() called. fragSurf1.arguments=${fragSurf1.arguments}")
     }
     override fun onBackPressed() {
         super.onBackPressed()

@@ -17,6 +17,7 @@ import com.example.myapplication.R
 class FragSurf1 : Fragment() {
 
     val TAG: String = "로그"
+    var clickedKeyword: String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,10 @@ class FragSurf1 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val bundle: Bundle? = arguments
+        Log.d(TAG, "FragSurf1 - onCreateView() called. bundle: $bundle")
+        clickedKeyword = bundle?.getString("clickedKeyword")
+
         return inflater.inflate(R.layout.fragment_surf_tab1, container, false)
     }
 
@@ -41,6 +46,7 @@ class FragSurf1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.lab_recycler)
         val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
+        Log.d(TAG, "FragSurf1 - onViewCreated() called. clickedKeyword from Bundle: $clickedKeyword")
 
         val lAdapter = LabAdapter(requireContext(), rawLabList)
         recyclerView.adapter = lAdapter

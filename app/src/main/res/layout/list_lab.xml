@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -18,6 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginVertical="10dp"
             android:layout_marginRight="13dp"
+            android:layout_marginLeft="16dp"
             android:background="@drawable/style_round_rectangle"
             />
 
@@ -25,7 +26,7 @@
             android:id="@+id/text_professor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="강준혁"
+            android:text="교수님 성함"
             android:gravity="top"
             android:textColor="@color/text_main"
             android:layout_alignTop="@id/lab_img"
@@ -42,18 +43,21 @@
             android:text="·"
             android:gravity="top"
             android:layout_toEndOf="@id/text_professor"/>
+
         <TextView
             android:id="@+id/text_lab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_main"
             android:layout_alignTop="@id/lab_img"
-            android:textStyle="bold"
-            android:text="고급 통신 연구실"
-            android:layout_toLeftOf="@id/text_lab_initial"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/text_lab_initial"
+            android:layout_toEndOf="@id/text_dot"
             android:gravity="top"
-            android:layout_toEndOf="@id/text_dot"/>
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="연구실 이름이 어디까지 길어지는 거예요?"
+            android:textColor="@color/text_main"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/text_lab_initial"
             android:layout_width="wrap_content"
@@ -62,68 +66,29 @@
             android:layout_centerVertical="true"
             android:textColor="@color/eeblue"
             android:textStyle="bold"
+            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"/>
-        <TextView
-            android:id="@+id/keyword1"
-            android:layout_width="wrap_content"
+
+        <com.xiaweizi.marquee.MarqueeTextView
+            android:id="@+id/text_keyword"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="응용수학"
-            android:maxLines="1"
+            android:text="키워드 길이가 어디까지 길어지는 거예요?"
+            app:scroll_first_delay="0"
+            app:scroll_interval="2000"
+            android:ellipsize="marquee"
+            app:scroll_mode="mode_forever"
             android:textSize="12sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:maxLines="1"
             android:textColor="@color/text_light"
-            android:layout_alignBottom="@id/lab_img"
-            android:gravity="bottom"
-            android:layout_below="@id/text_professor"
             android:layout_alignLeft="@id/text_professor"
-            />
-        <TextView
-            android:id="@+id/keyword1_comma"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=", "
-            android:gravity="bottom"
-            android:textSize="12sp"
-            android:textColor="@color/text_light"
-            android:layout_toRightOf="@id/keyword1"
-            android:layout_alignBottom="@id/lab_img"
-            />
-        <TextView
-            android:id="@+id/keyword2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="무선통신"
-            android:maxLines="1"
-            android:gravity="bottom"
-            android:textSize="12sp"
-            android:textColor="@color/text_light"
-            android:layout_alignBottom="@id/lab_img"
-            android:layout_toRightOf="@id/keyword1_comma"
-            />
-        <TextView
-            android:id="@+id/keyword2_comma"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=", "
-            android:gravity="bottom"
-            android:textSize="12sp"
-            android:textColor="@color/text_light"
-            android:layout_toRightOf="@id/keyword2"
-            android:layout_alignBottom="@id/lab_img"
-            />
-        <TextView
-            android:id="@+id/keyword3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:text="신호처리"
-            android:gravity="bottom"
-            android:textSize="12sp"
-            android:textColor="@color/text_light"
             android:layout_alignBottom="@id/lab_img"
             android:layout_toLeftOf="@id/text_lab_initial"
             android:layout_marginRight="16dp"
-            android:layout_toRightOf="@id/keyword2_comma"
-            />
+            android:gravity="bottom"
+            android:layout_below="@id/text_professor" />
 
 
     </RelativeLayout>

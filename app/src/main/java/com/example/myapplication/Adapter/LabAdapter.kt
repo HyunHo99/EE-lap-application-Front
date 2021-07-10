@@ -2,10 +2,12 @@ package com.example.myapplication.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,7 @@ import com.example.myapplication.R
 import com.example.myapplication.data.DataDiv
 import com.example.myapplication.data.Lab
 import com.example.myapplication.model.Division
+import com.xiaweizi.marquee.MarqueeTextView
 
 class LabAdapter (
     private val context: Context,
@@ -23,15 +26,15 @@ class LabAdapter (
         val professorView: TextView = view.findViewById(R.id.text_professor)
         val labNameView: TextView = view.findViewById(R.id.text_lab)
         val labInitialView: TextView = view.findViewById(R.id.text_lab_initial)
-        val keyword1View: TextView = view.findViewById(R.id.keyword1)
-        val keyword2View: TextView = view.findViewById(R.id.keyword2)
-        val keyword3View: TextView = view.findViewById(R.id.keyword3)
+        val keywordView: MarqueeTextView = view.findViewById(R.id.text_keyword)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_lab, parent, false)
+
+
         return LabViewHolder(adapterLayout)
     }
 
@@ -43,15 +46,17 @@ class LabAdapter (
         holder.labNameView.text = item.LabName
         holder.labInitialView.text = item.LabInitial
         Log.d(TAG,"keywords: ${item.Keywords}")
-        if (item.Keywords.size>2){
-        holder.keyword1View.text = item.Keywords[0]
-        holder.keyword2View.text = item.Keywords[1]
-        holder.keyword3View.text = item.Keywords[2]
-        } else {
-            holder.keyword1View.text = "정보 없음"
-            holder.keyword2View.text = "정보 없음"
-            holder.keyword3View.text = "정보 없음"
+
+
+        var keywordString:String = ""
+        for (i in 0 until item.Keywords.size){
+            keywordString += item.Keywords[i]
+            keywordString += ", "
         }
+        holder.keywordView.text = keywordString
+        holder.keywordView.isSelected = true
+        holder.keywordView.setHorizontallyScrolling(true)
+
 
         Log.d(TAG, "LabAdapter - onBindViewHolder() called, position=$position, div=$holder")
 

@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         val labList = LabListLoader().loadLabList(assetManager)
         Log.d(TAG, "labList: $labList")
 
-
 //        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
 //        val textView = findViewById<TextView>(R.id.textView2)
 //        val client = OkHttpClient()

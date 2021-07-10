@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,6 +50,8 @@
             android:layout_alignTop="@id/lab_img"
             android:textStyle="bold"
             android:text="고급 통신 연구실"
+            android:layout_toLeftOf="@id/text_lab_initial"
+            android:layout_marginRight="16dp"
             android:gravity="top"
             android:layout_toEndOf="@id/text_dot"/>
         <TextView
@@ -66,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="응용수학"
+            android:maxLines="1"
             android:textSize="12sp"
             android:textColor="@color/text_light"
             android:layout_alignBottom="@id/lab_img"
@@ -89,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="무선통신"
+            android:maxLines="1"
             android:gravity="bottom"
             android:textSize="12sp"
             android:textColor="@color/text_light"
@@ -110,11 +114,14 @@
             android:id="@+id/keyword3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="신호처리"
             android:gravity="bottom"
             android:textSize="12sp"
             android:textColor="@color/text_light"
             android:layout_alignBottom="@id/lab_img"
+            android:layout_toLeftOf="@id/text_lab_initial"
+            android:layout_marginRight="16dp"
             android:layout_toRightOf="@id/keyword2_comma"
             />
 

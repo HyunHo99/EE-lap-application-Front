@@ -1,0 +1,561 @@
+{
+  "labs": [
+    {
+      "professor": "김동준",
+      "id": "cp1",
+      "division": "CP",
+      "lab": "컴퓨터 시스템 및 네트워크 연구실",
+      "labInitial": "CSNL",
+      "locationProf": "IT융합빌딩 (N1), 514",
+      "locationLab": "IT융합빌딩 (N1), 518",
+      "telProf": 7448,
+      "website": "http://icn.kaist.ac.kr",
+      "keywords": [
+        "컴퓨터 시스템",
+        "컴퓨터 구조",
+        "보안",
+        "하드웨어 보안",
+        "머신러닝",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "김성민",
+      "id": "cp2",
+      "division": "CP",
+      "lab": "스마트 모바일 시스템 연구실",
+      "labInitial": "Smile LAB",
+      "locationProf": "IT융합빌딩 (N1), 913",
+      "locationLab": "CHIPS동 (N26), 110",
+      "telProf": null,
+      "website": "https://sites.google.com/view/smilelab/",
+      "keywords": [
+        "무선 네트워크",
+        "모바일 컴퓨팅",
+        "사물인터넷",
+        "임베디드 시스템",
+        "통신 시스템"
+      ]
+    },
+    {
+      "professor": "김용대",
+      "id": "cp3",
+      "division": "CP",
+      "lab": "시스템 보안 연구실",
+      "labInitial": "SysSec",
+      "locationProf": "CHIPS동 (N26), 202",
+      "locationLab": "CHIPS동 (N26), 201",
+      "telProf": 7430,
+      "website": "http://syssec.kaist.ac.kr/~yongdaek",
+      "keywords": [
+        "보안",
+        "해킹",
+        "자율주행",
+        "드론",
+        "이동통신",
+        "블록체인"
+      ]
+    },
+    {
+      "professor": "박경수",
+      "id": "cp4",
+      "division": "CP",
+      "lab": "네트워크 및 분산 시스템 연구실",
+      "labInitial": "NDSL",
+      "locationProf": "IT융합빌딩 (N1), 813",
+      "locationLab": "IT융합빌딩 (N1), 820",
+      "telProf": 7412,
+      "website": "http://www.ndsl.kaist.edu",
+      "keywords": [
+        "네트워크 컴퓨터 시스템",
+        "시스템 소프트웨어",
+        "네트워크 보안",
+        "보안"
+      ]
+    },
+    {
+      "professor": "신기정",
+      "id": "cp5",
+      "division": "CP",
+      "lab": "데이터 마이닝 연구실",
+      "labInitial": "",
+      "locationProf": "CHIPS동 (N26), 110",
+      "locationLab": "Building No.9",
+      "telProf": null,
+      "website": "http://kaistdata.github.io",
+      "keywords": [
+        "빅데이터",
+        "데이터 마이닝",
+        "그래프 알고리즘",
+        "머신러닝",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "신승원",
+      "id": "cp6",
+      "division": "CP",
+      "lab": "네트워크 시스템 및 보안 연구실",
+      "labInitial": "NSS",
+      "locationProf": "IT융합빌딩 (N1), 910",
+      "locationLab": "IT융합빌딩 (N1), 919",
+      "telProf": 7438,
+      "website": "http://nss.kaist.ac.kr/",
+      "keywords": [
+        "네트워크 보안",
+        "시스템 보안",
+        "SDN",
+        "NFV",
+        "사물인터넷",
+        "보안"
+      ]
+    },
+    {
+      "professor": "신진우",
+      "id": "cp7",
+      "division": "CP",
+      "lab": "인공지능 알고리즘 연구실",
+      "labInitial": "ALIN-LAB",
+      "locationProf": "IT융합빌딩 (N1), 914",
+      "locationLab": "IT융합빌딩 (N1), 917",
+      "telProf": 7432,
+      "website": "https://sites.google.com/site/mijirim/",
+      "keywords": [
+        "머신러닝",
+        "알고리즘",
+        "네트워크",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "심현철",
+      "id": "cp8",
+      "division": "CP",
+      "lab": "무인 시스템 연구실",
+      "labInitial": "USRG",
+      "locationProf": "KI 빌딩 (E4), C324",
+      "locationLab": "KI 빌딩 (E4), C304",
+      "telProf": 7445,
+      "website": "http://unmanned.kaist.ac.kr",
+      "keywords": [
+        "자율주행자동차",
+        "UGV",
+        "UAV",
+        "로보틱스"
+      ]
+    },
+    {
+      "professor": "원유집",
+      "id": "cp9",
+      "division": "CP",
+      "lab": "운영 체제 연구실",
+      "labInitial": "OSLab",
+      "locationProf": "CHIPS동 (N26), 220",
+      "locationLab": "CHIPS동 (N26), 210",
+      "telProf": 7456,
+      "website": "https://oslab.kaist.ac.kr",
+      "keywords": [
+        "운영체제",
+        "파일 시스템",
+        "안드로이드",
+        "플래시 스토리지"
+      ]
+    },
+    {
+      "professor": "유민수",
+      "id": "cp10",
+      "division": "CP",
+      "lab": "컴퓨터 시스템 아키텍처 연구실",
+      "labInitial": "VIA",
+      "locationProf": "IT융합빌딩 (N1), 809",
+      "locationLab": "IT융합빌딩 (N1), 818",
+      "telProf": 7447,
+      "website": "https://sites.google.com/view/kaist-via",
+      "keywords": [
+        "컴퓨터 구조",
+        "VSLI",
+        "SoC",
+        "딥러닝",
+        "컴퓨터 비전",
+        "컴퓨터 시스템",
+        "머신러닝",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "윤인수",
+      "id": "cp11",
+      "division": "CP",
+      "lab": "",
+      "labInitial": "",
+      "locationProf": "IT융합빌딩 (N1), 812",
+      "locationLab": "",
+      "telProf": null,
+      "website": "https://kaist-s4.github.io/",
+      "keywords": null
+    },
+    {
+      "professor": "윤찬현",
+      "id": "cp12",
+      "division": "CP",
+      "lab": "네트워크 및 컴퓨팅 연구실",
+      "labInitial": "NCL",
+      "locationProf": "전기및전자공학부동 (E3-2), 3205",
+      "locationLab": "전기및전자공학부동 (E3-2), 3204, 3206, 3211",
+      "telProf": 3495,
+      "website": "http://ncl.kaist.ac.kr",
+      "keywords": [
+        "HPC",
+        "딥러닝 가속기",
+        "컴퓨팅 플랫폼",
+        "머신러닝",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "이성주",
+      "id": "cp13",
+      "division": "CP",
+      "lab": "네트워크 및 모바일 시스템 연구실",
+      "labInitial": "NMSL",
+      "locationProf": "IT융합빌딩 (N1), 306",
+      "locationLab": "",
+      "telProf": 7413,
+      "website": "https://nmsl.kaist.ac.kr/",
+      "keywords": [
+        "모바일 컴퓨팅",
+        "네트워크 시스템",
+        "인간-컴퓨터 상호작용",
+        "머신러닝",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "이융",
+      "id": "cp14",
+      "division": "CP",
+      "lab": "LANADA 연구실",
+      "labInitial": "LANADA",
+      "locationProf": "IT융합빌딩 (N1), 810",
+      "locationLab": "IT융합빌딩 (N1), 819",
+      "telProf": 3486,
+      "website": "http://lanada.kaist.ac.kr",
+      "keywords": [
+        "네트워크 시스템",
+        "데이터 베이스",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "장래혁",
+      "id": "cp15",
+      "division": "CP",
+      "lab": "사물 설계 자동화 연구실",
+      "labInitial": "CAD4X LAB",
+      "locationProf": "LG이노베이션홀 (N24), 1110",
+      "locationLab": "LG이노베이션홀 (N24), 1109",
+      "telProf": 7434,
+      "website": "http://www.cad4x.kaist.ac.kr",
+      "keywords": [
+        "사물 설계 자동화",
+        "저전력 시스템",
+        "에너지 최적화",
+        "임베디드 시스템"
+      ]
+    },
+    {
+      "professor": "정명수",
+      "id": "cp16",
+      "division": "CP",
+      "lab": "컴퓨터 구조 및 메모리 시스템 연구실",
+      "labInitial": "CAMELab",
+      "locationProf": "IT융합빌딩 (N1), 411",
+      "locationLab": "IT융합빌딩 (N1), 421",
+      "telProf": 7455,
+      "website": "http://camelab.org",
+      "keywords": [
+        "컴퓨터 구조",
+        "운영체제",
+        "SSD/플래시",
+        "AI 가속기",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "정송",
+      "id": "cp17",
+      "division": "CP",
+      "lab": "데이터 과학 및 네크워크 연구실",
+      "labInitial": "DSNL",
+      "locationProf": "IT융합빌딩 (N1), 913",
+      "locationLab": "IT융합빌딩 (N1), 918",
+      "telProf": 3473,
+      "website": "https://sites.google.com/a/kaist.edu/song-chong/",
+      "keywords": [
+        "데이터 과학",
+        "네트워크",
+        "의사결정",
+        "최적화"
+      ]
+    },
+    {
+      "professor": "최준균",
+      "id": "cp18",
+      "division": "CP",
+      "lab": "미디어 네트워크 연구실",
+      "labInitial": "MediaNET",
+      "locationProf": "문지캠퍼스 진리관, 234",
+      "locationLab": "문지캠퍼스 진리관, 244",
+      "telProf": 3459,
+      "website": "http://medianet.kaist.ac.kr",
+      "keywords": [
+        "사물인터넷",
+        "IPTV",
+        "모빌리티",
+        "스마트그리드",
+        "AI+IoT",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "한동수",
+      "id": "cp19",
+      "division": "CP",
+      "lab": "지능형 네트워크 아키텍쳐 및 분산 시스템 연구실",
+      "labInitial": "INA",
+      "locationProf": "IT융합빌딩 (N1), 814",
+      "locationLab": "IT융합빌딩 (N1), 817",
+      "telProf": 7431,
+      "website": "http://ina.kaist.ac.kr",
+      "keywords": [
+        "AI 기반의 Video Delivery",
+        "클라우드 컴퓨팅",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "황의종",
+      "id": "cp20",
+      "division": "CP",
+      "lab": "데이터 지능 연구실",
+      "labInitial": "DI Lab",
+      "locationProf": "IT융합빌딩 (N1), 516",
+      "locationLab": "IT융합빌딩 (N1), 519",
+      "telProf": 7443,
+      "website": "http://stevenwhang.com",
+      "keywords": [
+        "빅데이터",
+        "인공지능",
+        "책임있는 인공지능",
+        "빅데이터-인공지능 융합"
+      ]
+    },
+    {
+      "professor": "강준혁",
+      "id": "cm1",
+      "division": "CM",
+      "lab": "고급 통신 연구실",
+      "labInitial": "ART Lab",
+      "locationProf": "IT융합빌딩 (N1), 714",
+      "locationLab": "IT융합빌딩 (N1), 719",
+      "telProf": 7422,
+      "website": "http://artlab.kaist.ac.kr",
+      "keywords": [
+        "응용수학",
+        "무선통신",
+        "신호처리",
+        "머신러닝",
+        "통신/컴퓨팅 융합",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "문재균",
+      "id": "cm2",
+      "division": "CM",
+      "lab": "MoonLab",
+      "labInitial": "MoonLab",
+      "locationProf": "IT융합빌딩 (N1), 616",
+      "locationLab": "IT융합빌딩 (N1), 617",
+      "telProf": 3487,
+      "website": "http://comstolab.kaist.ac.kr/",
+      "keywords": [
+        "머신러닝 분산 학습",
+        "데이터가 부족한 상황에서의 학습",
+        "통신",
+        "저장",
+        "정보이론",
+        "신호처리",
+        "인공지능",
+        "머신러닝"
+      ]
+    },
+    {
+      "professor": "박현철",
+      "id": "cm3",
+      "division": "CM",
+      "lab": "정보 전송 연구실",
+      "labInitial": "LIT",
+      "locationProf": "IT융합빌딩 (N1), 715",
+      "locationLab": "IT융합빌딩 (N1), 718",
+      "telProf": 7420,
+      "website": "http://lit.kaist.ac.kr",
+      "keywords": [
+        "거대 다중입출력 안테나",
+        "BG5/6G 무선통신",
+        "mmWave/THz 대역 빔포밍",
+        "지능형 통신 시스템",
+        "SWIPT",
+        "통신"
+      ]
+    },
+    {
+      "professor": "서창호",
+      "id": "cm4",
+      "division": "CM",
+      "lab": "정보 시스템 연구실",
+      "labInitial": "ISL",
+      "locationProf": "IT융합빌딩 (N1), 912",
+      "locationLab": "IT융합빌딩 (N1), 920",
+      "telProf": 7429,
+      "website": "http://sites.google.com/site/changhosuh",
+      "keywords": [
+        "정보이론",
+        "머신러닝",
+        "딥러닝",
+        "공정한 머신러닝",
+        "자율주행",
+        "인공지능"
+      ]
+    },
+    {
+      "professor": "성영철",
+      "id": "cm5",
+      "division": "CM",
+      "lab": "스마트 정보 시스템 연구실",
+      "labInitial": "SISReL",
+      "locationProf": "IT융합빌딩 (N1), 614",
+      "locationLab": "IT융합빌딩 (N1), 619",
+      "telProf": 3484,
+      "website": "https://sites.google.com/view/sisrelkaist",
+      "keywords": [
+        "강화학습",
+        "통계적 추론",
+        "신호처리"
+      ]
+    },
+    {
+      "professor": "송익호",
+      "id": "cm6",
+      "division": "CM",
+      "lab": "통신처",
+      "labInitial": "",
+      "locationProf": "전기및전자공학부동 (E3-2), 5202",
+      "locationLab": "전기및전자공학부동 (E3-2), 4219",
+      "telProf": 3445,
+      "website": "http://bungae.kaist.ac.kr",
+      "keywords": [
+        "신호 검파",
+        "통계학적 신호처리",
+        "통신"
+      ]
+    },
+    {
+      "professor": "이시현",
+      "id": "cm7",
+      "division": "CM",
+      "lab": "정보이론, 통신 및 보안 연구실",
+      "labInitial": "InfoLab",
+      "locationProf": "IT융합빌딩 (N1), 712",
+      "locationLab": "",
+      "telProf": 7463,
+      "website": "https://sites.google.com/view/kaist-infolab",
+      "keywords": [
+        "머신러닝",
+        "프라이버시 보호",
+        "무선통신",
+        "보안통신",
+        "정보이론",
+        "인공지능",
+        "통신"
+      ]
+    },
+    {
+      "professor": "정세영",
+      "id": "cm8",
+      "division": "CM",
+      "lab": "정보이론 및 기계학습 연구실",
+      "labInitial": "ITML",
+      "locationProf": "IT융합빌딩 (N1), 615",
+      "locationLab": "IT융합빌딩 (N1), 618",
+      "telProf": 3481,
+      "website": "http://itml.kaist.ac.kr",
+      "keywords": [
+        "정보이론",
+        "머신러닝",
+        "인공지능",
+        "강화학습",
+        "통신"
+      ]
+    },
+    {
+      "professor": "정혜원",
+      "id": "cm9",
+      "division": "CM",
+      "lab": "데이터 과학을 위한 추론 및 정보 연구실",
+      "labInitial": "IIDS Lab",
+      "locationProf": "IT융합빌딩 (N1), 206",
+      "locationLab": "IT융합빌딩 (N1), 213",
+      "telProf": 7441,
+      "website": "http://iids.kaist.ac.kr",
+      "keywords": [
+        "데이터 과학",
+        "정보이론",
+        "통계적 추론",
+        "알고리즘"
+      ]
+    },
+    {
+      "professor": "최준일",
+      "id": "cm11",
+      "division": "CM",
+      "lab": "지능형 통신 시스템 연구실",
+      "labInitial": "ICL",
+      "locationProf": "IT융합빌딩 (N1), 716",
+      "locationLab": "LG이노베이션홀 (N24), 2107",
+      "telProf": 7460,
+      "website": "http://www.icl.kaist.ac.kr/",
+      "keywords": [
+        "5G/6G 통신",
+        "AI 통신",
+        "차량 통신",
+        "위성/드론 통신",
+        "가시광 통신",
+        "인공지능",
+        "통신"
+      ]
+    },
+    {
+      "professor": "하정석",
+      "id": "cm12",
+      "division": "CM",
+      "lab": "부호 및 통신 연구실",
+      "labInitial": "CoCoA",
+      "locationProf": "IT융합빌딩 (N1), 612",
+      "locationLab": "IT융합빌딩 (N1), 620",
+      "telProf": 7424,
+      "website": "http://cocoa.kaist.ac.kr",
+      "keywords": [
+        "무선 통신을 위한 보안기술",
+        "머신러닝 기반 첨단 무선 통신",
+        "양자 연산을 위한 양자 오류 정정부호",
+        "양자 연산을 위한 알고리즘",
+        "무선통신 및 저장장치를 위한 오류정정부호",
+        "머신러닝",
+        "통신",
+        "인공지능",
+        "무선통신"
+      ]
+    }
+  ]
+}

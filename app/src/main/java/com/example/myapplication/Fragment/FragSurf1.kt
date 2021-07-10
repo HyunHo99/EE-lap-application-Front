@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.LabAdapter
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
+import com.example.myapplication.data.Lab
 
 class FragSurf1 : Fragment() {
 
@@ -31,7 +32,6 @@ class FragSurf1 : Fragment() {
         val bundle: Bundle? = arguments
         Log.d(TAG, "FragSurf1 - onCreateView() called. bundle: $bundle")
         clickedKeyword = bundle?.getString("clickedKeyword")
-
         return inflater.inflate(R.layout.fragment_surf_tab1, container, false)
     }
 
@@ -48,15 +48,41 @@ class FragSurf1 : Fragment() {
         val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
         Log.d(TAG, "FragSurf1 - onViewCreated() called. clickedKeyword from Bundle: $clickedKeyword")
 
-        val lAdapter = LabAdapter(requireContext(), rawLabList)
+        val lAdapter =
+            clickedKeyword?.let { filterListByKeyword(it,rawLabList)?.let { LabAdapter(requireContext(), it) } }
         recyclerView.adapter = lAdapter
 
         val layout = LinearLayoutManager(activity)
         recyclerView.layoutManager = layout
         recyclerView.setHasFixedSize(true)
+    }
 
+    private fun filterListByKeyword(keyword: String, rawLabList: ArrayList<Lab>): ArrayList<Lab>? {
+        val newLabList: ArrayList<Lab> = ArrayList()
+        val listOfDiv:List<String> = listOf("컴퓨터","신호","회로","통신","소자","전파")
+        if (clickedKeyword in listOfDiv) {
 
-
+            val division: String = when(keyword){
+                "컴퓨터" -> "CP"
+                "통신" -> "CM"
+                "신호" -> "SN"
+                "회로" -> "CC"
+                "소자" -> "DV"
+                else -> "WV"
+            }
+            for (i in 0 until rawLabList.size) {
+                if (rawLabList[i].Division == division){
+                    newLabList.add(rawLabList[i])
+                    Log.d(TAG, "division: $division. newLabList=$newLabList")
+                }
+            }
+        }
+        else {
+            for (i in 0 until rawLabList.size) {
+                if (keyword in rawLabList[i].Keywords) newLabList.add(rawLabList[i])
+            }
+        }
+        return newLabList
     }
 
 }

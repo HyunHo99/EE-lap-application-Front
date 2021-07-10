@@ -50,6 +50,12 @@ class SurfActivity : AppCompatActivity(){
         val tabLayout = findViewById<TabLayout>(R.id.tab_surf)
         val keywordTextView = findViewById<TextView>(R.id.keyword)
         keywordTextView.text = clickedKeyword
+        val parentCategoryView = findViewById<TextView>(R.id.parent_category)
+
+        val listOfDiv:List<String> = listOf("컴퓨터","신호","회로","통신","소자","전파")
+        if (clickedKeyword in listOfDiv) {
+            parentCategoryView.text = "디비전/"
+        }
 
         val fragSurf1 by lazy { FragSurf1() }
         val fragSurf2 by lazy { FragSurf2() }

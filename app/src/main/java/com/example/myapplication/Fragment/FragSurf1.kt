@@ -1,11 +1,13 @@
 package com.example.myapplication.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.LabAdapter
@@ -13,6 +15,12 @@ import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
 
 class FragSurf1 : Fragment() {
+
+    val TAG: String = "로그"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +40,9 @@ class FragSurf1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.lab_recycler)
-        val lAdapter = LabAdapter(requireContext(), LabListLoader().loadLabList(assetManager = resources.assets))
+        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
+
+        val lAdapter = LabAdapter(requireContext(), rawLabList)
         recyclerView.adapter = lAdapter
 
         val layout = LinearLayoutManager(activity)

@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 
 data class Lab (
     val Professor: String,
+    val Id: String,
     val Division: String,
     val LabName: String,
     val LabInitial: String,

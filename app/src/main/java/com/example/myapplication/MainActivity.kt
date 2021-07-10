@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     val TAG: String = "로그"
 
     private val url = "http://192.249.18.134:80"
+    
 
     private val fragments: List<Fragment> = listOf(
         fragPo, fragFr1, fragFr2
@@ -38,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.fadein,R.anim.fadeout)
         setContentView(R.layout.activity_main)
+
+        val assetManager : AssetManager = resources.assets
+        Log.d(TAG, "assetManager = $assetManager")
+        val labList = LabList().loadLabList(assetManager)
+        Log.d(TAG, "MainActivity - onCreate() called $labList")
 
 
 //        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()

@@ -27,7 +27,7 @@
       "labInitial": "Smile LAB",
       "locationProf": "IT융합빌딩 (N1), 913",
       "locationLab": "CHIPS동 (N26), 110",
-      "telProf": null,
+      "telProf": "",
       "website": "https://sites.google.com/view/smilelab/",
       "keywords": [
         "무선 네트워크",
@@ -81,7 +81,7 @@
       "labInitial": "",
       "locationProf": "CHIPS동 (N26), 110",
       "locationLab": "Building No.9",
-      "telProf": null,
+      "telProf": "",
       "website": "http://kaistdata.github.io",
       "keywords": [
         "빅데이터",
@@ -190,9 +190,9 @@
       "labInitial": "",
       "locationProf": "IT융합빌딩 (N1), 812",
       "locationLab": "",
-      "telProf": null,
+      "telProf": "",
       "website": "https://kaist-s4.github.io/",
-      "keywords": null
+      "keywords": []
     },
     {
       "professor": "윤찬현",
@@ -517,7 +517,7 @@
     },
     {
       "professor": "최준일",
-      "id": "cm11",
+      "id": "cm10",
       "division": "CM",
       "lab": "지능형 통신 시스템 연구실",
       "labInitial": "ICL",
@@ -537,7 +537,7 @@
     },
     {
       "professor": "하정석",
-      "id": "cm12",
+      "id": "cm11",
       "division": "CM",
       "lab": "부호 및 통신 연구실",
       "labInitial": "CoCoA",

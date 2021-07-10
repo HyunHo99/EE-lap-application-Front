@@ -8,9 +8,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class LabList() {
-    fun loadLabList(assetManager: AssetManager): List<Lab> {
-        val TAG: String = "로그"
+class LabListLoader() {
+    fun loadLabList(assetManager: AssetManager): ArrayList<Lab> {
         val loadedLabList: ArrayList<Lab> = ArrayList()
         try {
             val inputStream = assetManager.open("LabList.json")
@@ -46,7 +45,6 @@ class LabList() {
                     baseInfo.getString("website"),
                     keywordsArray
                 )
-                Log.d(TAG, "id:${baseInfo.getString("id")}")
                 loadedLabList.add(tempData)
             }
 
@@ -55,7 +53,9 @@ class LabList() {
         } catch (e: IOException){
             e.printStackTrace()
         }
-        Log.d(TAG, "loadedLabList length:${loadedLabList.size}")
+        val TAG: String = "로그"
+        Log.d(TAG, "Number of Labs: ${loadedLabList.size}")
         return loadedLabList
     }
+
 }

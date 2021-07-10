@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val assetManager : AssetManager = resources.assets
-        Log.d(TAG, "assetManager = $assetManager")
-        val labList = LabList().loadLabList(assetManager)
-        Log.d(TAG, "MainActivity - onCreate() called $labList")
+        val labList = LabListLoader().loadLabList(assetManager)
+        Log.d(TAG, "labList: $labList")
 
 
 //        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()

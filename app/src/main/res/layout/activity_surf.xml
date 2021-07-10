@@ -135,8 +135,8 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@drawable/gradient"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@id/tab_surf"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 <!--</ScrollView>-->

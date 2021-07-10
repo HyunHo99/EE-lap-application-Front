@@ -51,7 +51,7 @@ class LabAdapter (
         var keywordString:String = ""
         for (i in 0 until item.Keywords.size){
             keywordString += item.Keywords[i]
-            keywordString += ", "
+            if (i!=item.Keywords.size-1) {keywordString += ", "}
         }
         holder.keywordView.text = keywordString
         holder.keywordView.isSelected = true

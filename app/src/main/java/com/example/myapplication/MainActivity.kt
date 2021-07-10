@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
-        overridePendingTransition(R.anim.fadein,R.anim.fadeout)
         setContentView(R.layout.activity_main)
 
         val assetManager : AssetManager = resources.assets

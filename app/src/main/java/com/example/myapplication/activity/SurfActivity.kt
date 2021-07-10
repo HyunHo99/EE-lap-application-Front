@@ -2,6 +2,7 @@ package com.example.myapplication.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Adapter.FragmentAdapter
@@ -19,9 +20,19 @@ class SurfActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "SurfActivity - onCreate() called")
         super.onCreate(savedInstanceState)
+//        overridePendingTransition(R.anim.slide_left_exit, R.anim.slide_left_enter)
         setContentView(R.layout.activity_surf)
         init()
+
+        val backBtn : View = findViewById(R.id.back_btn)
+        backBtn.setOnClickListener {
+            Log.d(TAG, "SurfActivity - onCreate() - setOnClickListener called")
+            finishAfterTransition()
+//            overridePendingTransition(R.anim.slide_right_enter,R.anim.slide_right_exit)
+        }
     }
+
+
 
     private fun init() {
         Log.d(TAG, "SurfActivity - init() called")
@@ -32,6 +43,11 @@ class SurfActivity : AppCompatActivity(){
             tab, position ->
             tab.text = tabTextList[position]
         }.attach()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+//        overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
 
 }

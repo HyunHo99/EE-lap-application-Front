@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout)
         setContentView(R.layout.activity_main)
+
 
 //        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
 //        val textView = findViewById<TextView>(R.id.textView2)

@@ -1,6 +1,7 @@
 package com.example.myapplication.Fragment
 
 import android.annotation.SuppressLint
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ class FragLab : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
     }
@@ -41,7 +43,9 @@ class FragLab : Fragment() {
         val searchBt : View = requireView().findViewById(R.id.search_btn)
         searchBt.setOnClickListener{
             val intent = Intent(activity, SurfActivity::class.java)
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
+//            requireActivity().overridePendingTransition(R.anim.slide_right_enter,R.anim.slide_right_exit)
+
         }
 
     }

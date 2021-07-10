@@ -13,6 +13,7 @@
         android:background="@color/gray_icon"
         />
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/back_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"

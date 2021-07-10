@@ -40,12 +40,10 @@ class LabAdapter (
 
     override fun onBindViewHolder(holder: LabViewHolder, position: Int) {
         val item = dataset[position]
-        val TAG: String = "로그"
 
         holder.professorView.text = item.Professor
         holder.labNameView.text = item.LabName
         holder.labInitialView.text = item.LabInitial
-        Log.d(TAG,"keywords: ${item.Keywords}")
 
 
         var keywordString:String = ""
@@ -56,9 +54,6 @@ class LabAdapter (
         holder.keywordView.text = keywordString
         holder.keywordView.isSelected = true
         holder.keywordView.setHorizontallyScrolling(true)
-
-
-        Log.d(TAG, "LabAdapter - onBindViewHolder() called, position=$position, div=$holder")
 
     }
 

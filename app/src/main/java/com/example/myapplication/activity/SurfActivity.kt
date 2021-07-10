@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Adapter.FragmentAdapter
+import com.example.myapplication.Fragment.FragSurf1
+import com.example.myapplication.Fragment.FragSurf2
+import com.example.myapplication.Fragment.FragSurf3
 import com.example.myapplication.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -46,16 +50,28 @@ class SurfActivity : AppCompatActivity(){
         val tabLayout = findViewById<TabLayout>(R.id.tab_surf)
         val keywordTextView = findViewById<TextView>(R.id.keyword)
         keywordTextView.text = clickedKeyword
+
+        val fragSurf1 by lazy { FragSurf1() }
+        val fragSurf2 by lazy { FragSurf2() }
+        val fragSurf3 by lazy { FragSurf3() }
+
+        val fragments: List<Fragment> = listOf(
+            fragSurf1, fragSurf2, fragSurf3
+        )
+
+        val bundle: Bundle = Bundle()
+        bundle.putString("clickedKeyword", clickedKeyword)
+        fragSurf1.arguments = bundle
+        fragSurf2.arguments = bundle
+        fragSurf3.arguments = bundle
         viewPager2.adapter = FragmentAdapter(this)
         TabLayoutMediator(tabLayout, viewPager2){
             tab, position ->
             tab.text = tabTextList[position]
         }.attach()
     }
-
     override fun onBackPressed() {
         super.onBackPressed()
 //        overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
-
 }

@@ -1,13 +1,13 @@
 package com.example.myapplication.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import okhttp3.*
 import java.io.IOException
 
@@ -27,10 +27,12 @@ class AddPostActivity : AppCompatActivity() {
         submitBt.setOnClickListener{ view ->
             val content = contentInput.text.toString()
             val subject = subjectInput.text.toString()
-            val formBody: RequestBody = FormBody.Builder().add("subject", subject).add("content", content).build()
-            postThis(formBody)
-            setResult(100)
-            finish()
+            if(content!=""&&subject!="") {
+                val formBody: RequestBody =
+                    FormBody.Builder().add("subject", subject).add("content", content).add("user",globalVar).build()
+                postThis(formBody)
+                finish()
+            }
         }
 
 

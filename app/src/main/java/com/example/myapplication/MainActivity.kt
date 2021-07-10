@@ -2,28 +2,22 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
-import com.example.myapplication.Fragment.FragFree2
+import com.example.myapplication.Fragment.FragLogin
 import com.example.myapplication.Fragment.FragData
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okhttp3.*
-import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
 
     private val fragPo by lazy { FragData() }
     private val fragFr1 by lazy { FragPost() }
-    private val fragFr2 by lazy { FragFree2() }
+    private val fragFr2 by lazy { FragLogin() }
 
     val TAG: String = "로그"
-
-    private val url = "http://192.249.18.134:80"
-
     private val fragments: List<Fragment> = listOf(
         fragPo, fragFr1, fragFr2
     )
@@ -40,22 +34,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
-//        val textView = findViewById<TextView>(R.id.textView2)
-//        val client = OkHttpClient()
-//        val request = Request.Builder().url(url).post(formBody).build()
-//
-//        client.newCall(request).enqueue(object : Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                runOnUiThread{textView.text = "fail to get"}
-//            }
-//
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                runOnUiThread{textView.text = response?.body?.string()}
-//            }
-//        })
 
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)

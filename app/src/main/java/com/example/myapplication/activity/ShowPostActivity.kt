@@ -23,10 +23,11 @@ import java.io.IOException
 
 class ShowPostActivity : AppCompatActivity(){
     val TAG: String = "로그"
-    private val commentsList = ArrayList<Comments>()
+    private var commentsList = ArrayList<Comments>()
     private lateinit var recyclerView : RecyclerView
     private lateinit var postTitle : TextView
     private lateinit var postContent :TextView
+    private val client = OkHttpClient()
 
 
 
@@ -41,16 +42,22 @@ class ShowPostActivity : AppCompatActivity(){
         val url="http://192.249.18.134:80/post/$postID/"
         val submitBt=findViewById<View>(R.id.comment_submit)
         val commentInput = findViewById<EditText>(R.id.comment_Input)
+        val deleteBt=findViewById<View>(R.id.bt_postDelete)
         postTitle = findViewById<TextView>(R.id.showpost_title)
         postContent = findViewById<TextView>(R.id.showpost_content)
         recyclerView = v.findViewById<RecyclerView>(R.id.showpost_recycler)
 
         getFromDB(v,url)
 
+        deleteBt.setOnClickListener { view ->
+            deleteThis(url)
+        }
+
         submitBt.setOnClickListener { view->
             val content = commentInput.text.toString()
             if(content!="") {
                 val formBody: RequestBody = FormBody.Builder().add("content", content).build()
+                commentInput.setText("")
                 postThis(formBody, url)
             }
         }
@@ -59,7 +66,7 @@ class ShowPostActivity : AppCompatActivity(){
     }
 
     private fun postThis(formBody: RequestBody, url: String) {
-        val client = OkHttpClient()
+
         val request = Request.Builder().url(url).post(formBody).build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -81,7 +88,6 @@ class ShowPostActivity : AppCompatActivity(){
 
 
     private fun getFromDB(view:View, url:String){
-        val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -109,4 +115,22 @@ class ShowPostActivity : AppCompatActivity(){
             }
         })
     }
+
+    private fun deleteThis(url: String){
+        val request = Request.Builder().delete().url(url).build()
+        client.newCall(request).enqueue(object : Callback{
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "removeFail")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "removeSuccess")
+                finish()
+            }
+        })
+    }
+
+
+
+
 }

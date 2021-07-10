@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/showpost_content"
         android:layout_width="match_parent"
-        android:layout_height="228dp"
+        android:layout_height="212dp"
         android:text="content here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,6 +29,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.097" />
+
+    <Button
+        android:id="@+id/bt_postDelete"
+        android:layout_width="53dp"
+        android:layout_height="51dp"
+        android:background="@android:drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/showpost_recycler"
@@ -44,8 +56,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="323dp"
-        android:layout_height="66dp"
+        android:layout_width="298dp"
+        android:layout_height="57dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,7 +1,9 @@
 package com.example.myapplication.Fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,7 +35,6 @@ class FragPost : Fragment() {
 
     private val url = "http://192.249.18.134:80/post"
     private lateinit var v : View;
-    private val postsList = ArrayList<Posts>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,28 +45,23 @@ class FragPost : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_post, container, false)
+
         val addPostBt : View = v.findViewById(R.id.bt_addPost)
         getFromDB(v)
 
 
         addPostBt.setOnClickListener{ view ->
             val intent = Intent(activity, AddPostActivity::class.java)
-            startActivityForResult(intent, 100)
+            startActivity(intent)
 
         }
 
         return v
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode==100){
-            getFromDB(v)
-        }
-    }
-
     private fun getFromDB(view:View){
         val client = OkHttpClient()
+        val postsList = ArrayList<Posts>()
         val request = Request.Builder().url(url).build()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_posts)
         client.newCall(request).enqueue(object : Callback {
@@ -100,5 +96,12 @@ class FragPost : Fragment() {
         })
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        getFromDB(v)
+    }
 }

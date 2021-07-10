@@ -20,6 +20,7 @@ class CommentAdapter (private val context: Context, private val dataset: ArrayLi
 
     class CommentViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val commentView : TextView = view.findViewById(R.id.txt_comment)
+        val commentTimeView : TextView = view.findViewById(R.id.txt_commentTime)
     }
 
 
@@ -34,6 +35,7 @@ class CommentAdapter (private val context: Context, private val dataset: ArrayLi
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val posts= dataset[position]
         holder.commentView.text = posts.comments
+        holder.commentTimeView.text = posts.time
 //        holder.itemView.setOnClickListener{
 //            val intent = Intent(holder.itemView.context, AddPostActivity::class.java).apply {
 //                putExtra("position", position)

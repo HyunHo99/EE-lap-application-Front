@@ -15,7 +15,7 @@ class AddPostActivity : AppCompatActivity() {
 
     val TAG: String = "로그"
     @SuppressLint("SetJavaScriptEnabled")
-    private val url = "http://192.249.18.134:80/post"
+    private val url = "http://192.249.18.134:80/post/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +29,7 @@ class AddPostActivity : AppCompatActivity() {
             val subject = subjectInput.text.toString()
             val formBody: RequestBody = FormBody.Builder().add("subject", subject).add("content", content).build()
             postThis(formBody)
+            setResult(100)
             finish()
         }
 

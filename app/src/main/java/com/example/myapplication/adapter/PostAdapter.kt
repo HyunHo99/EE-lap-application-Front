@@ -22,7 +22,11 @@ import com.example.myapplication.data.Posts
 class PostAdapter (private val context: Context, private val dataset: ArrayList<Posts>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     val TAG: String = "로그"
+    interface ItemClick{
+        fun onClick(view: View,position: Int)
+    }
 
+    var itemClick: ItemClick? = null
 
 
     class PostViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -43,11 +47,11 @@ class PostAdapter (private val context: Context, private val dataset: ArrayList<
         val posts= dataset[position]
         holder.subjectView.text = posts.subject
         holder.timeView.text = posts.time
-        holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, ShowPostActivity::class.java).apply {
-                putExtra("position", position)
+        if(itemClick!=null) {
+            holder.itemView.setOnClickListener { v->
+                itemClick?.onClick(v, position)
+
             }
-            context.startActivity(intent)
         }
     }
 

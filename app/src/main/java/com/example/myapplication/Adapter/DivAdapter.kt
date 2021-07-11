@@ -53,7 +53,6 @@ class DivAdapter (
             Log.d(TAG, "DivAdapter - onBindViewHolder() called, intent=$intent")
             context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
         }
-
     }
 
     override fun getItemCount(): Int {

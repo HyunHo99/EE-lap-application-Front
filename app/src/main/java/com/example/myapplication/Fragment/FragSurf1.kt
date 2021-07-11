@@ -35,21 +35,15 @@ class FragSurf1 : Fragment() {
         return inflater.inflate(R.layout.fragment_surf_tab1, container, false)
     }
 
-    fun newInstance(): FragSurf1 {
-        val args = Bundle()
-        val fragment = FragSurf1()
-        fragment.arguments = args
-        return fragment
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.lab_recycler)
         val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
         Log.d(TAG, "FragSurf1 - onViewCreated() called. clickedKeyword from Bundle: $clickedKeyword")
 
-        val lAdapter =
-            clickedKeyword?.let { filterListByKeyword(it,rawLabList)?.let { LabAdapter(requireContext(), it) } }
+        val newLabList = clickedKeyword?.let { filterListByKeyword(it, rawLabList) }
+
+        val lAdapter = newLabList?.let { LabAdapter(requireContext(), it) }
         recyclerView.adapter = lAdapter
 
         val layout = LinearLayoutManager(activity)
@@ -57,7 +51,7 @@ class FragSurf1 : Fragment() {
         recyclerView.setHasFixedSize(true)
     }
 
-    private fun filterListByKeyword(keyword: String, rawLabList: ArrayList<Lab>): ArrayList<Lab>? {
+    private fun filterListByKeyword(keyword: String, rawLabList: ArrayList<Lab>): ArrayList<Lab> {
         val newLabList: ArrayList<Lab> = ArrayList()
         val listOfDiv:List<String> = listOf("컴퓨터","신호","회로","통신","소자","전파")
         if (clickedKeyword in listOfDiv) {

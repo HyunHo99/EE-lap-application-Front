@@ -1,47 +1,32 @@
 package com.example.myapplication.Adapter
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.DataDiv
-import com.example.myapplication.model.Division
+import com.example.myapplication.data.Keyword
 
-class KeywordAdapter (
+class KeywordAdapter(
     private val context: Context,
-    private val dataset: List<Division>
-    ): RecyclerView.Adapter<KeywordAdapter.DivViewHolder>() {
+    private val dataset: ArrayList<Keyword>
+    ): RecyclerView.Adapter<KeywordAdapter.KeywordViewHolder>() {
 
-    class DivViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-        val divView: TextView = view.findViewById(R.id.div_name)
-//        val divButtonView: Button = view.findViewById(R.id.div_button)
-//        val divImg : ImageView = view.findViewById(R.id.)
-
+    class KeywordViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+        val keywordView: TextView = view.findViewById(R.id.text_keyword_only)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DivViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_division, parent, false)
-        return DivViewHolder(adapterLayout)
+            .inflate(R.layout.list_keyword, parent, false)
+        return KeywordViewHolder(adapterLayout)
     }
 
-    override fun onBindViewHolder(holder: DivViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: KeywordViewHolder, position: Int) {
         val item = dataset[position]
-        val TAG: String = "로그"
-
-        holder.divView.setText(item.DivisionResourceId)
-        Log.d(TAG, "DivAdapter - onBindViewHolder() called, position=$position, div=$holder.divView.text")
-//        holder.divButtonView.setOnClickListener{
-//            val context = holder.view.context
-//            val intent = Intent(context, DetailActivity::class.java)
-//        }
-
+        holder.keywordView.text = item.KeywordName
     }
 
     override fun getItemCount(): Int {

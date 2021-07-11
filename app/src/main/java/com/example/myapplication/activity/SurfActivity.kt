@@ -61,9 +61,6 @@ class SurfActivity : AppCompatActivity(){
         val fragSurf2 by lazy { FragSurf2() }
         val fragSurf3 by lazy { FragSurf3() }
 
-        val fragments: List<Fragment> = listOf(
-            fragSurf1, fragSurf2, fragSurf3
-        )
 
         val bundle: Bundle = Bundle()
         bundle.putString("clickedKeyword", clickedKeyword)

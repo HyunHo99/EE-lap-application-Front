@@ -10,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.activity.AddPostActivity
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.activity.ShowPostActivity
 import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.Posts
@@ -51,8 +53,13 @@ class FragPost : Fragment() {
 
 
         addPostBt.setOnClickListener{ view ->
-            val intent = Intent(activity, AddPostActivity::class.java)
-            startActivity(intent)
+            if(globalVar.equals("0")){
+                Toast.makeText(activity, "게시물 등록은 로그인 후 가능합니다", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent = Intent(activity, AddPostActivity::class.java)
+                startActivity(intent)
+            }
 
         }
 

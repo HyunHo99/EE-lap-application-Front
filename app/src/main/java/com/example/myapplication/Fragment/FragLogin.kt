@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -27,6 +28,8 @@ import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.tasks.OnCompleteListener
 
 
 class FragLogin : Fragment() {
@@ -37,6 +40,8 @@ class FragLogin : Fragment() {
     lateinit var userEmailText : TextView
     lateinit var userPhoto : ImageView
     lateinit var signinBt : View
+    lateinit var signoutBt : View
+    lateinit var mGoogleSignInClient : GoogleSignInClient
 
     object ImageLoder{
         suspend fun loadImage(imageUrl:String) : Bitmap?{
@@ -66,11 +71,12 @@ class FragLogin : Fragment() {
         userEmailText = view.findViewById(R.id.txt_userEmail)
         userPhoto = view.findViewById(R.id.img_user)
         signinBt = view.findViewById(R.id.bt_signin)
+        signoutBt = view.findViewById(R.id.bt_signout)
         val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestEmail().build()
         val gsa = GoogleSignIn.getLastSignedInAccount(requireActivity())
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         if(gsa==null) {
-            val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
             signinBt.visibility = View.VISIBLE
             signinBt.setOnClickListener { v ->
                 val intent = mGoogleSignInClient.signInIntent
@@ -84,7 +90,11 @@ class FragLogin : Fragment() {
                 userEmailText.visibility = View.VISIBLE
                 userNameText.visibility = View.VISIBLE
                 userPhoto.visibility = View.VISIBLE
+                signoutBt.visibility = View.VISIBLE
                 globalVar = gsa.id ?: "0"
+                signoutBt.setOnClickListener { v->
+                    signOut(mGoogleSignInClient)
+                }
             }
             if(gsa.photoUrl!=null) {
                 CoroutineScope(Dispatchers.Main).launch {
@@ -100,6 +110,19 @@ class FragLogin : Fragment() {
         }
     }
 
+    private fun signOut(mGoogleSignInClient: GoogleSignInClient) {
+        mGoogleSignInClient.signOut()
+        userEmailText.visibility = View.GONE
+        userNameText.visibility = View.GONE
+        userPhoto.visibility = View.GONE
+        signoutBt.visibility = View.GONE
+        signinBt.visibility = View.VISIBLE
+        globalVar = "0"
+        signinBt.setOnClickListener { v ->
+            val intent = mGoogleSignInClient.signInIntent
+            signIn(intent)
+        }
+    }
 
 
     private fun signIn(intent: Intent){
@@ -132,7 +155,11 @@ class FragLogin : Fragment() {
                     userEmailText.visibility=View.VISIBLE
                     userPhoto.visibility = View.VISIBLE
                     signinBt.visibility=View.INVISIBLE
+                    signoutBt.visibility = View.VISIBLE
                     globalVar = personId ?: "0"
+                    signoutBt.setOnClickListener { v->
+                        signOut(mGoogleSignInClient)
+                    }
                 }
                 if(personPhoto!=null) {
                     CoroutineScope(Dispatchers.Main).launch {

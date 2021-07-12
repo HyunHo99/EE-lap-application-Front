@@ -27,18 +27,31 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="TextView"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txt_comment"
-                android:layout_width="301dp"
-                android:layout_height="41dp"
+                android:layout_width="267dp"
+                android:layout_height="37dp"
                 android:gravity="center_vertical"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/bt_deletecomment"
+                android:layout_width="58dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="4dp"
+                android:text="삭제"
+                android:textSize="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/txt_commentTime"
+                app:layout_constraintStart_toEndOf="@+id/txt_comment"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

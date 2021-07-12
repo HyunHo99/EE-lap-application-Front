@@ -7,19 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.ContentView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.adapter.CommentAdapter
-import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.Comments
-import com.example.myapplication.data.Posts
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+
 
 class ShowPostActivity : AppCompatActivity(){
     val TAG: String = "로그"
@@ -27,7 +27,14 @@ class ShowPostActivity : AppCompatActivity(){
     private lateinit var recyclerView : RecyclerView
     private lateinit var postTitle : TextView
     private lateinit var postContent :TextView
+    private lateinit var submitBt : View
+    private lateinit var commentInput :EditText
+    private lateinit var deleteBt :View
     private val client = OkHttpClient()
+    private var userID = "0"
+
+
+
 
 
 
@@ -40,27 +47,18 @@ class ShowPostActivity : AppCompatActivity(){
         setContentView(v)
         val postID = intent.getIntExtra("postID", -1)
         val url="http://192.249.18.134:80/post/$postID/"
-        val submitBt=findViewById<View>(R.id.comment_submit)
-        val commentInput = findViewById<EditText>(R.id.comment_Input)
-        val deleteBt=findViewById<View>(R.id.bt_postDelete)
+        submitBt=findViewById<View>(R.id.comment_submit)
+        commentInput = findViewById<EditText>(R.id.comment_Input)
+        deleteBt=findViewById<View>(R.id.bt_postDelete)
         postTitle = findViewById<TextView>(R.id.showpost_title)
         postContent = findViewById<TextView>(R.id.showpost_content)
         recyclerView = v.findViewById<RecyclerView>(R.id.showpost_recycler)
 
-        getFromDB(v,url)
+        getFromDB(url)
 
-        deleteBt.setOnClickListener { view ->
-            deleteThis(url)
-        }
 
-        submitBt.setOnClickListener { view->
-            val content = commentInput.text.toString()
-            if(content!="") {
-                val formBody: RequestBody = FormBody.Builder().add("content", content).build()
-                commentInput.setText("")
-                postThis(formBody, url)
-            }
-        }
+
+
 
 
     }
@@ -77,7 +75,8 @@ class ShowPostActivity : AppCompatActivity(){
                 val test = response.body?.string() ?: return
                 val k=JSONObject(test)
                 runOnUiThread{
-                    commentsList.add(Comments(comments = k.get("content").toString(),time = k.get("create_date").toString()))
+                    commentsList.add(Comments(comments = k.get("content").toString(), time = k.get("create_date").toString(),
+                        commentID = k.get("id").toString().toInt(), user = k.get("user").toString()))
                     val newAdapter = CommentAdapter(applicationContext, commentsList)
                     recyclerView.adapter=newAdapter
                 }
@@ -87,9 +86,9 @@ class ShowPostActivity : AppCompatActivity(){
     }
 
 
-    private fun getFromDB(view:View, url:String){
+    private fun getFromDB(url:String){
         val request = Request.Builder().url(url).build()
-
+        commentsList.clear()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(TAG, "getFail")
@@ -100,9 +99,20 @@ class ShowPostActivity : AppCompatActivity(){
                 val post = JSONObject(test).getJSONObject("post")
                 for(i in 0 until jsonArray.length()){
                     val k = jsonArray.getJSONObject(i)
-                    commentsList.add(Comments(comments = k.get("content").toString(), time = k.get("create_date").toString()))
+                    commentsList.add(Comments(comments = k.get("content").toString(), time = k.get("create_date").toString(),
+                        commentID = k.get("id").toString().toInt(), user = k.get("user").toString()))
                 }
                 val cAdapter = CommentAdapter(applicationContext, commentsList)
+                cAdapter.itemClick = object : CommentAdapter.ItemClick{
+                    override fun onClick(view: View, position: Int) {
+                        if(commentsList[position].user.equals(globalVar)) {
+                            deleteComment(commentsList[position].commentID)
+                            val intent = intent
+                            finish()
+                            startActivity(intent)
+                        }
+                    }
+                }
                 runOnUiThread{
                     recyclerView.adapter=cAdapter
                     val lm = LinearLayoutManager(applicationContext)
@@ -110,8 +120,43 @@ class ShowPostActivity : AppCompatActivity(){
                     recyclerView.setHasFixedSize(true)
                     postContent.text=post.get("content").toString()
                     postTitle.text=post.get("subject").toString()
+                    userID = post.get("user").toString()
+                    if(globalVar.equals(userID) && !globalVar.equals("0")) {
+                        deleteBt.visibility = View.VISIBLE
+                        deleteBt.setOnClickListener { view ->
+                            deleteThis(url)
+                        }
+                    }
+                    submitBt.setOnClickListener { view->
+                        if(!globalVar.equals("0")) {
+                            val content = commentInput.text.toString()
+                            if (content != "") {
+                                val formBody: RequestBody = FormBody.Builder().add("content", content).add("user",
+                                    globalVar).build()
+                                commentInput.setText("")
+                                postThis(formBody, url)
+                            }
+                        }
+                        else{
+                            Toast.makeText(applicationContext, "로그인 후 등록할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                     Log.d(TAG, "getSuccess")
                 }
+            }
+        })
+    }
+
+    private fun deleteComment(commentID: Int) {
+        val url = "http://192.249.18.134:80/post/delete/$commentID/"
+        val request = Request.Builder().delete().url(url).build()
+        client.newCall(request).enqueue(object : Callback{
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "removeFail")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "removeSuccess")
             }
         })
     }

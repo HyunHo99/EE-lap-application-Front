@@ -3,4 +3,15 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
+    <string name="div_comp">컴퓨터</string>
+    <string name="div_comm">통신</string>
+    <string name="div_circ">회로</string>
+    <string name="div_wave">전파</string>
+    <string name="div_devi">소자</string>
+    <string name="div_sign">신호</string>
+    <string name="test">인공지능</string>
+
+    <string name="div_color">null</string>
+    <string name="keyword_explanation">Machine learning (ML) is the study of computer algorithms that improve automatically through experience and by the use of data.</string>
+
 </resources>

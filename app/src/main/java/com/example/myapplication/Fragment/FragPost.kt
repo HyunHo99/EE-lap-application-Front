@@ -9,13 +9,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.TextView
 import android.widget.Toast
+
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.activity.AddPostActivity
+
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.activity.ShowPostActivity
 import com.example.myapplication.adapter.PostAdapter

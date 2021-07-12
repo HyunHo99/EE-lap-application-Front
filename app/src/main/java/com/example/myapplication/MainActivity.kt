@@ -1,43 +1,59 @@
 package com.example.myapplication
 
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
+
+import com.example.myapplication.Fragment.FragFree2
+import com.example.myapplication.Fragment.FragLab
+
 import com.example.myapplication.Fragment.FragLogin
 import com.example.myapplication.Fragment.FragData
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
 
-    private val fragPo by lazy { FragData() }
+    private val fragPo by lazy { FragLab() }
     private val fragFr1 by lazy { FragPost() }
     private val fragFr2 by lazy { FragLogin() }
 
     val TAG: String = "로그"
-    private val fragments: List<Fragment> = listOf(
-        fragPo, fragFr1, fragFr2
-    )
-
-    private val pagerAdapter: MainPagerAdapter by lazy {
-        MainPagerAdapter(this, fragments)
-    }
-
-    var navigation: BottomNavigationView ?= null
-    var vpMain: ViewPager2 ?= null
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "MainActivity - onCreate() called")
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    private val url = "http://192.249.18.134:80"
+    
+
+        val assetManager : AssetManager = resources.assets
+        val labList = LabListLoader().loadLabList(assetManager)
+        Log.d(TAG, "labList: $labList")
+
+//        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
+//        val textView = findViewById<TextView>(R.id.textView2)
+//        val client = OkHttpClient()
+//        val request = Request.Builder().url(url).post(formBody).build()
+//
+//        client.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                runOnUiThread{textView.text = "fail to get"}
+//            }
+//
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                runOnUiThread{textView.text = response?.body?.string()}
+//            }
+//        })
+
 
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
+
         initViewPager()
         initNavigationBar()
 
@@ -73,9 +89,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         Log.d(TAG, "MainActivity - initViewPager() called")
+        vpMain?.isUserInputEnabled = false
 
         vpMain?.run {
             this.adapter = pagerAdapter
+
             this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
                     val nav = when(position) {

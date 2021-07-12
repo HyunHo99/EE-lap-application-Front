@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/div_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:foreground="?selectableItemBackground"
+        android:background="@drawable/style_round_rectangle"
+        android:layout_marginHorizontal="16dp">
+    </androidx.appcompat.widget.AppCompatImageButton>
+
+    <TextView
+        android:id="@+id/div_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/div_button"
+        app:layout_constraintTop_toTopOf="@id/div_button"
+        app:layout_constraintBottom_toBottomOf="@id/div_button"
+        android:layout_marginLeft="13dp"
+        android:text="디비전"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#1858AE"></TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

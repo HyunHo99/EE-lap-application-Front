@@ -1,4 +1,4 @@
-package com.example.myapplication.Adapter
+package com.example.myapplication.adapter
 
 import android.app.Activity
 import android.app.ActivityOptions

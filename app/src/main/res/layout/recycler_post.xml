@@ -5,42 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:theme="@style/Theme.MyApplication.Ripple"
+        android:background="?selectableItemBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+        <TextView
+            android:id="@+id/recycler_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목"
+            android:gravity="top"
+            android:textColor="@color/text_main"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            />
+
+        <TextView
+            android:id="@+id/recycler_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="본문 길이가 어디까지 길어지는 거예요? 본문 길이가 어디까지 길어지는 거예요? 본문 길이가 어디까지 길어지는 거예요? 본문 길이가 어디까지 길어지는 거예요? 본문 길이가 어디까지 길어지는 거예요? 본문 길이가 어디까지 길어지는 거예요?"
+            android:textSize="12sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/text_light"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="bottom"
+            android:layout_marginVertical="3dp"
+            android:layout_below="@id/recycler_subject" />
 
-            <TextView
-                android:id="@+id/recycler_subject"
-                android:layout_width="294dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="16dp"
-                android:text="subject here"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_time"
+            android:text="time here"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="4dp"
+            android:textAlignment="center"
+            android:layout_below="@id/recycler_content"/>
 
-            <TextView
-                android:id="@+id/recycler_time"
-                android:layout_width="54dp"
-                android:layout_height="49dp"
-                android:text="time here"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/recycler_subject"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/fragname"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="1dp"
+            android:layout_below="@id/recycler_time"
+            android:background="@color/gray_icon"
+            />
+
+
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

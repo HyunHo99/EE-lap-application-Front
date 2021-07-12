@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.myapplication.Adapter.FragmentAdapter
+import com.example.myapplication.adapter.FragmentAdapter
 import com.example.myapplication.Fragment.FragSurf1
 import com.example.myapplication.Fragment.FragSurf2
 import com.example.myapplication.Fragment.FragSurf3

@@ -42,6 +42,7 @@ class PostAdapter (private val context: Context, private val dataset: ArrayList<
     class PostViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val subjectView: TextView = view.findViewById(R.id.recycler_subject)
         val timeView: TextView = view.findViewById(R.id.recycler_time)
+        val contentView : TextView = view.findViewById(R.id.recycler_content)
     }
 
 
@@ -57,6 +58,7 @@ class PostAdapter (private val context: Context, private val dataset: ArrayList<
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val posts= dataset[position]
         holder.subjectView.text = posts.subject
+        holder.contentView.text = posts.content
         val k = ZonedDateTime.of(LocalDateTime.parse(posts.time, formatter), ZoneId.systemDefault()).toInstant().toEpochMilli()
         val test = DateUtils.getRelativeDateTimeString(context, k,
             DateUtils.MINUTE_IN_MILLIS,

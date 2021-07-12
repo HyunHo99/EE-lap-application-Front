@@ -84,7 +84,7 @@ class FragPost : Fragment() {
                 for(i in 0 until jsonArray.length()){
                     val k = jsonArray.getJSONObject(i)
                     postsList.add(Posts(subject = k.get("subject").toString(), time = k.get("create_date").toString(),
-                        postID = k.get("id").toString().toInt()))
+                        postID = k.get("id").toString().toInt(), content = k.get("content").toString()))
                 }
                 val pAdapter = PostAdapter(requireContext(), postsList)
                 pAdapter.itemClick = object : PostAdapter.ItemClick{

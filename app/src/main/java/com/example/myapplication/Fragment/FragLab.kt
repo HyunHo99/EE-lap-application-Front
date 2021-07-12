@@ -21,7 +21,6 @@ import com.example.myapplication.activity.SurfActivity
 import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.DataDiv
 import com.example.myapplication.data.Lab
-import com.example.myapplication.data.Posts
 import com.example.myapplication.model.Division
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import okhttp3.*

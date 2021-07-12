@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.data.Comments
-import com.example.myapplication.data.Posts
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime

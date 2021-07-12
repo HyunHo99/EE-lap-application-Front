@@ -1,4 +1,4 @@
-package com.example.myapplication.Adapter
+package com.example.myapplication.adapter
 
 import android.app.Activity
 import android.app.ActivityOptions
@@ -43,7 +43,7 @@ class KeywordAdapter(
             setPosition(position)
             val TAG: String = "로그"
             Log.d(TAG, "KeywordAdapter - onBindViewHolder() called")
-            val context = holder.view.context
+            //val context = holder.view.context
             val keywordName = item.KeywordName
             val keywordFreq = item.KeywordFreq
 

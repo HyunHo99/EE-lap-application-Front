@@ -12,6 +12,8 @@ import com.example.myapplication.Fragment.FragLab
 
 import com.example.myapplication.Fragment.FragLogin
 import com.example.myapplication.Fragment.FragData
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -35,30 +37,18 @@ class MainActivity : AppCompatActivity() {
     var navigation: BottomNavigationView ?= null
     var vpMain: ViewPager2 ?= null
 
-//        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
-//        val textView = findViewById<TextView>(R.id.textView2)
-//        val client = OkHttpClient()
-//        val request = Request.Builder().url(url).post(formBody).build()
-//
-//        client.newCall(request).enqueue(object : Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                runOnUiThread{textView.text = "fail to get"}
-//            }
-//
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                runOnUiThread{textView.text = response?.body?.string()}
-//            }
-//        })
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        val gsa = GoogleSignIn.getLastSignedInAccount(this)
+        if(gsa?.id!=null){
+            globalVar = gsa.id!!
+        }
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
+
 
         initViewPager()
         initNavigationBar()

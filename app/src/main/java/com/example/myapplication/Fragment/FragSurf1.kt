@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Adapter.LabAdapter
+import com.example.myapplication.adapter.LabAdapter
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
 import com.example.myapplication.data.Lab

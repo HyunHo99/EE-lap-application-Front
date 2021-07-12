@@ -52,7 +52,7 @@ class FragPost : Fragment() {
         v = inflater.inflate(R.layout.fragment_post, container, false)
 
         val addPostBt : View = v.findViewById(R.id.bt_addPost)
-        getFromDB(v)
+        //getFromDB(v)
 
 
         addPostBt.setOnClickListener{ view ->

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
 
-import com.example.myapplication.Fragment.FragFree2
 import com.example.myapplication.Fragment.FragLab
 
 import com.example.myapplication.Fragment.FragLogin
@@ -27,11 +26,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private val url = "http://192.249.18.134:80"
-    
+    val fragments = listOf(fragPo, fragFr1, fragFr2)
 
-        val assetManager : AssetManager = resources.assets
-        val labList = LabListLoader().loadLabList(assetManager)
-        Log.d(TAG, "labList: $labList")
+    private val pagerAdapter: MainPagerAdapter by lazy {
+        MainPagerAdapter(this, fragments)
+    }
+
+    var navigation: BottomNavigationView ?= null
+    var vpMain: ViewPager2 ?= null
 
 //        val formBody: RequestBody = FormBody.Builder().add("subject", "test").add("content", "test").build()
 //        val textView = findViewById<TextView>(R.id.textView2)
@@ -48,6 +50,10 @@ class MainActivity : AppCompatActivity() {
 //                runOnUiThread{textView.text = response?.body?.string()}
 //            }
 //        })
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "MainActivity - onCreate() called")
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
 
 

@@ -31,7 +31,7 @@ class FragSurf1 : Fragment() {
     ): View? {
         val bundle: Bundle? = arguments
         Log.d(TAG, "FragSurf1 - onCreateView() called. bundle: $bundle")
-        clickedKeyword = bundle?.getString("clickedKeyword")
+        clickedKeyword = bundle?.getString("clickedKeywordName")
         return inflater.inflate(R.layout.fragment_surf_tab1, container, false)
     }
 

@@ -5,6 +5,7 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.example.myapplication.activity.SurfActivity
 import com.example.myapplication.data.DataDiv
 import com.example.myapplication.model.Division
 import androidx.fragment.app.Fragment
+import com.example.myapplication.LabListLoader
 
 class DivAdapter (
     private val context: Context,
@@ -48,12 +50,16 @@ class DivAdapter (
 
         holder.divButtonView.setOnClickListener{
             val context = holder.view.context
+            val divisionFreq: Int = item.DivisionFreqId
             val intent = Intent(context, SurfActivity::class.java)
-            intent.putExtra("clickedKeyword",holder.divView.text.toString())
+
+            intent.putExtra("clickedKeywordName",holder.divView.text.toString())
+            intent.putExtra("clickedKeywordFreq", divisionFreq)
             Log.d(TAG, "DivAdapter - onBindViewHolder() called, intent=$intent")
             context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
         }
     }
+
 
     override fun getItemCount(): Int {
         return dataset.size

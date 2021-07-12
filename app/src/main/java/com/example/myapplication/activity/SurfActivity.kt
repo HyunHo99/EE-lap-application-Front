@@ -22,7 +22,8 @@ class SurfActivity : AppCompatActivity(){
     val TAG: String = "로그"
 
     private val tabTextList = arrayListOf("연구실","관련 키워드","소식")
-    var clickedKeyword: String? = null
+    var clickedKeywordName: String? = null
+    var clickedKeywordFreq: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "SurfActivity - onCreate() called")
@@ -30,8 +31,9 @@ class SurfActivity : AppCompatActivity(){
 //        overridePendingTransition(R.anim.slide_left_exit, R.anim.slide_left_enter)
         setContentView(R.layout.activity_surf)
         val intentSurfActivity: Intent = intent
-        clickedKeyword = intentSurfActivity.extras?.getString("clickedKeyword")
-        Log.d(TAG, "SurfActivity - onCreate() called, clickedKeyword=$clickedKeyword")
+        clickedKeywordName = intentSurfActivity.extras?.getString("clickedKeywordName")
+        clickedKeywordFreq = intentSurfActivity.extras?.getInt("clickedKeywordFreq")
+        Log.d(TAG, "SurfActivity - onCreate() called, clickedKeyword=$clickedKeywordName")
         init()
 
         val backBtn : View = findViewById(R.id.back_btn)
@@ -49,11 +51,13 @@ class SurfActivity : AppCompatActivity(){
         val viewPager2 = findViewById<ViewPager2>(R.id.vp_surf)
         val tabLayout = findViewById<TabLayout>(R.id.tab_surf)
         val keywordTextView = findViewById<TextView>(R.id.keyword)
-        keywordTextView.text = clickedKeyword
+        val keywordNumberView = findViewById<TextView>(R.id.numb_lab)
+        keywordTextView.text = clickedKeywordName
+        keywordNumberView.text = clickedKeywordFreq.toString()+"개의 연구실"
         val parentCategoryView = findViewById<TextView>(R.id.parent_category)
 
         val listOfDiv:List<String> = listOf("컴퓨터","신호","회로","통신","소자","전파")
-        if (clickedKeyword in listOfDiv) {
+        if (clickedKeywordName in listOfDiv) {
             parentCategoryView.text = "디비전/"
         }
 
@@ -63,7 +67,7 @@ class SurfActivity : AppCompatActivity(){
 
 
         val bundle: Bundle = Bundle()
-        bundle.putString("clickedKeyword", clickedKeyword)
+        bundle.putString("clickedKeywordName", clickedKeywordName)
         fragSurf1.arguments = bundle
         fragSurf2.arguments = bundle
         fragSurf3.arguments = bundle

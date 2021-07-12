@@ -30,7 +30,7 @@ class FragSurf2 : Fragment(){
     ): View? {
         val bundle: Bundle? = arguments
         Log.d(TAG, "FragSurf2 - onCreateView() called. bundle: $bundle")
-        clickedKeyword = bundle?.getString("clickedKeyword")
+        clickedKeyword = bundle?.getString("clickedKeywordName")
         return inflater.inflate(R.layout.fragment_surf_tab2, container, false)
     }
 
@@ -43,6 +43,8 @@ class FragSurf2 : Fragment(){
         if (clickedKeyword!=null && newLabList!=null)  {
             newKeywordList = makeListOfKeyword(clickedKeyword!!, newLabList)
         }
+
+        getKeywordFreq(newKeywordList, rawLabList)
 
         val kAdapter = KeywordAdapter(requireContext(), newKeywordList)
         recyclerView.adapter = kAdapter
@@ -90,47 +92,18 @@ class FragSurf2 : Fragment(){
                Log.d(TAG, "in for loop. j=$j, Keyword=${lab.Keywords[j]}")
                val index: Int = isInKeywordList(lab.Keywords[j], newKeywordList)
                if (index>=0) {
-                   newKeywordList[index].KeywordFreq ++
                    Log.d(TAG, "keyword exists. keyName=${newKeywordList[index].KeywordName}, keyFreq=${newKeywordList[index].KeywordFreq}")
                } else {
                    val tempData = Keyword(
                        lab.Keywords[j],
-                       1
+                       0
                    )
                    Log.d(TAG, "new keyword added to list, KeywordName=${tempData.KeywordName}")
                    newKeywordList.add(tempData)
                }
            }
        }
-
-
-
-//       for (i in 0 until newLabList.size) {
-//           Log.d(TAG, "FragSurf2 - makeListOfKeyword() called, &&&&&")
-//           for (j in 0 until newLabList[i].Keywords.size) {
-//               Log.d(TAG, "FragSurf2 - makeListOfKeyword() called, +++++")
-//               if (newLabList[i].Keywords[j] != keyword){
-//                   for (k in 0 until newKeywordList.size){
-//                       Log.d(TAG, "FragSurf2 - makeListOfKeyword() called, *****")
-//                       if (newLabList[i].Keywords[j] == newKeywordList[k].KeywordName){
-//                           newKeywordList[k].KeywordFreq ++
-//                       } else {
-//                           val tempData = Keyword(
-//                               newLabList[i].Keywords[j],
-//                               0
-//                           )
-//                           Log.d(TAG, "FragSurf2 - makeListOfKeyword() called, tempData=$tempData")
-//                           newKeywordList.add(tempData)
-//                       }
-//                   }
-//               }
-//           }
-//       }
        newKeywordList.sortedWith(compareBy { it.KeywordFreq })
-//       val finalKeywordList: ArrayList<Keyword> = ArrayList()
-//       for (i in 0 until newKeywordList.size){
-//           finalKeywordList.add(newKeywordList[i])
-//       }
        Log.d(TAG, "FragSurf2 - makeListOfKeyword() called, Keywordnumber=${newKeywordList.size}, some keywords: ${newKeywordList[0].KeywordName},${newKeywordList[1].KeywordName} ")
        return newKeywordList
     }
@@ -142,6 +115,19 @@ class FragSurf2 : Fragment(){
                 if (newKeywordList[i].KeywordName==keyword) return i
             }
             return -1
+        }
+
+    }
+
+    private fun getKeywordFreq(newKeywordList: ArrayList<Keyword>, rawLabList: ArrayList<Lab>){
+
+        // each keyword
+        for (eachKeyword in newKeywordList){
+            for (eachLab in rawLabList) {
+                if (eachKeyword.KeywordName in eachLab.Keywords){
+                    eachKeyword.KeywordFreq ++
+                }
+            }
         }
 
     }

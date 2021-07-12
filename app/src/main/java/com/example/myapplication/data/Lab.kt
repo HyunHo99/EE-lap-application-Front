@@ -1,7 +1,9 @@
 package com.example.myapplication.data
 
-import androidx.annotation.StringRes
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Lab (
     val Professor: String,
     val Id: String,
@@ -13,4 +15,4 @@ data class Lab (
     val TelProf: String,
     val Website: String,
     val Keywords: MutableList<String>
-)
+) : Parcelable

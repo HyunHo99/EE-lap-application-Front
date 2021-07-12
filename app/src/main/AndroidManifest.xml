@@ -26,6 +26,8 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"
             >
         </activity>
+        <activity android:name=".activity.LabDetailActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
     </application>
 
 </manifest>

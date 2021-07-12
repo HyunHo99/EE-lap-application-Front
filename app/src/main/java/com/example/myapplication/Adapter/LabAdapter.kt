@@ -1,5 +1,7 @@
 package com.example.myapplication.Adapter
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
@@ -12,6 +14,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.activity.LabDetailActivity
+import com.example.myapplication.activity.SurfActivity
 import com.example.myapplication.data.DataDiv
 import com.example.myapplication.data.Lab
 import com.example.myapplication.model.Division
@@ -21,6 +25,13 @@ class LabAdapter (
     private val context: Context,
     private val dataset: ArrayList<Lab>
     ): RecyclerView.Adapter<LabAdapter.LabViewHolder>() {
+
+    var mPosition = 0
+    val TAG: String = "로그"
+
+    fun setPosition(position: Int) {
+        mPosition = position
+    }
 
     class LabViewHolder(val view: View) : RecyclerView.ViewHolder(view){
         val professorView: TextView = view.findViewById(R.id.text_professor)
@@ -54,6 +65,15 @@ class LabAdapter (
         holder.keywordView.text = keywordString
         holder.keywordView.isSelected = true
         holder.keywordView.setHorizontallyScrolling(true)
+
+        holder.view.setOnClickListener {
+            setPosition(position)
+            val context = holder.view.context
+            val intent = Intent(context, LabDetailActivity::class.java)
+            intent.putExtra("clickedLab",item)
+            context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
+
+        }
 
     }
 

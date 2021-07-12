@@ -7,8 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
+
 import com.example.myapplication.Fragment.FragFree2
 import com.example.myapplication.Fragment.FragLab
+
+import com.example.myapplication.Fragment.FragLogin
+import com.example.myapplication.Fragment.FragData
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -16,29 +21,13 @@ class MainActivity : AppCompatActivity() {
 
     private val fragPo by lazy { FragLab() }
     private val fragFr1 by lazy { FragPost() }
-    private val fragFr2 by lazy { FragFree2() }
+    private val fragFr2 by lazy { FragLogin() }
 
     val TAG: String = "로그"
 
+
     private val url = "http://192.249.18.134:80"
     
-
-    private val fragments: List<Fragment> = listOf(
-        fragPo, fragFr1, fragFr2
-    )
-
-    private val pagerAdapter: MainPagerAdapter by lazy {
-        MainPagerAdapter(this, fragments)
-    }
-
-    var navigation: BottomNavigationView ?= null
-    var vpMain: ViewPager2 ?= null
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "MainActivity - onCreate() called")
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         val assetManager : AssetManager = resources.assets
         val labList = LabListLoader().loadLabList(assetManager)
@@ -59,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 //                runOnUiThread{textView.text = response?.body?.string()}
 //            }
 //        })
+
 
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)

@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/Theme.MyApplication.Ripple"
+        android:background="?selectableItemBackground"
         android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatImageView

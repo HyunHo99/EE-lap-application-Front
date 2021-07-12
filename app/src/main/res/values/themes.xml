@@ -22,7 +22,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowActivityTransitions">true</item>
+    </style>
 
+    <style name="Theme.MyApplication.Ripple">
+        <item name="colorControlHighlight">#4196C3FF</item>
     </style>
 
     <style name="Theme.MyApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

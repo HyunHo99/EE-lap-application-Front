@@ -10,6 +10,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="100dp"
         android:layout_height="130dp"
+        android:foreground="?selectableItemBackground"
         android:background="@drawable/style_round_rectangle"
         android:layout_marginHorizontal="16dp">
     </androidx.appcompat.widget.AppCompatImageButton>

@@ -56,8 +56,7 @@ class FragPost : Fragment() {
 
 
         addPostBt.setOnClickListener{ view ->
-//            if(globalVar.equals("0")){
-            if (false) {
+            if(globalVar.equals("0")){
                 Toast.makeText(activity, "게시물 등록은 로그인 후 가능합니다", Toast.LENGTH_SHORT).show()
             }
             else {

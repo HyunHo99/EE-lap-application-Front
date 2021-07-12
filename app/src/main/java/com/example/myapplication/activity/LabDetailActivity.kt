@@ -1,5 +1,7 @@
 package com.example.myapplication.activity
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.airbnb.lottie.LottieAnimationView
 import com.example.myapplication.Adapter.DivAdapter
 import com.example.myapplication.Adapter.FragmentAdapter
 import com.example.myapplication.Adapter.KeywordAdapter
@@ -35,6 +38,7 @@ class LabDetailActivity : AppCompatActivity(){
     val TAG: String = "로그"
 
     var clickedLabItem: Lab?= null
+    var isLiked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +54,7 @@ class LabDetailActivity : AppCompatActivity(){
         val websiteView = findViewById<AppCompatButton>(R.id.web_btn)
         val locationView = findViewById<AppCompatImageButton>(R.id.location_btn)
         val telView = findViewById<AppCompatImageButton>(R.id.call_btn)
-        val favoriteView = findViewById<AppCompatImageButton>(R.id.favorite_btn)
+        val favoriteView = findViewById<LottieAnimationView>(R.id.favorite_btn)
 
         websiteView.setOnClickListener(){
             val url: String = clickedLabItem!!.Website
@@ -58,12 +62,29 @@ class LabDetailActivity : AppCompatActivity(){
             this.startActivity(intent)
         }
 
+        isLiked = false
+
         favoriteView.setOnClickListener{
-            favoriteView.startAnimation()
+            if (!isLiked){
+                val animator = ValueAnimator.ofFloat(0.09f,0.69f).setDuration(3000)
+                animator.addUpdateListener { animation: ValueAnimator ->
+                    favoriteView.progress = animation.animatedValue as Float
+                }
+                animator.start()
+                isLiked = true
+            } else {
+                val animator = ValueAnimator.ofFloat(0.72f, 1f).setDuration(3000)
+                animator.addUpdateListener { animation: ValueAnimator ->
+                    favoriteView.progress = animation.animatedValue as Float
+                }
+                animator.start()
+                isLiked = false
+            }
         }
 
 
     }
+
 
 
     private fun init() {

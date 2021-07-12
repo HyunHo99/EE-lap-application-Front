@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.DivAdapter
+import com.example.myapplication.Adapter.LabAdapter
+import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
 import com.example.myapplication.activity.SurfActivity
 import com.example.myapplication.data.DataDiv
+import com.example.myapplication.data.Lab
 import com.example.myapplication.model.Division
 
 class FragLab : Fragment() {
@@ -35,10 +38,21 @@ class FragLab : Fragment() {
         val recyclerViewDiv = requireView().findViewById<RecyclerView>(R.id.div_recycler)
         val dAdapter = DivAdapter(requireContext(), divList)
         recyclerViewDiv.adapter = dAdapter
-
         val layout = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewDiv.layoutManager = layout
         recyclerViewDiv.setHasFixedSize(true)
+
+        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
+        val idList: MutableList<String> = mutableListOf("cm1", "cm2", "cp5")
+        val favLabList = getFavLabListById(idList, rawLabList)
+
+        val recyclerViewFav = requireView().findViewById<RecyclerView>(R.id.favlab_recycler)
+        val flAdapter = LabAdapter(requireContext(), favLabList)
+        recyclerViewFav.adapter = flAdapter
+        val layoutF = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerViewFav.layoutManager = layoutF
+        recyclerViewFav.setHasFixedSize(true)
+
 
         val searchBt : View = requireView().findViewById(R.id.search_btn)
         searchBt.setOnClickListener{
@@ -50,14 +64,47 @@ class FragLab : Fragment() {
 
     }
 
+    private fun getFavLabListById(idList: MutableList<String>, rawLabList: ArrayList<Lab>): ArrayList<Lab> {
+        val favLabList: ArrayList<Lab> = ArrayList()
+        for (id in idList){
+            for (lab in rawLabList){
+                if (id.contentEquals(lab.Id)){
+                    favLabList.add(lab)
+                    break
+                }
+            }
+        }
+        return favLabList
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lab, container, false)
-
-
         return view
-
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

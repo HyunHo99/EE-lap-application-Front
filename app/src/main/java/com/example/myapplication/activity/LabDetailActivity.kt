@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
@@ -14,18 +15,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.myapplication.adapter.KeywordAdapter
+import com.example.myapplication.adapter.DivAdapter
+import com.example.myapplication.adapter.FragmentAdapter
+import com.example.myapplication.adapter.KeywordAdapter
+import com.example.myapplication.Fragment.FragSurf1
+import com.example.myapplication.Fragment.FragSurf2
+import com.example.myapplication.Fragment.FragSurf3
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.example.myapplication.adapter.LabAdapter
 import com.example.myapplication.data.Keyword
 import com.example.myapplication.data.Lab
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import okhttp3.*
+import java.io.IOException
 
 
 class LabDetailActivity : AppCompatActivity(){
 
     val TAG: String = "로그"
+    private val url = "http://192.249.18.134:80/lab/${MyGlobal.globalVar}/"
 
     var clickedLabItem: Lab?= null
     var isLiked: Boolean = false
+    val client = OkHttpClient()
+    val idList = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,35 +57,76 @@ class LabDetailActivity : AppCompatActivity(){
         val websiteView = findViewById<AppCompatButton>(R.id.web_btn)
         val locationView = findViewById<AppCompatImageButton>(R.id.location_btn)
         val telView = findViewById<AppCompatImageButton>(R.id.call_btn)
-        val favoriteView = findViewById<LottieAnimationView>(R.id.favorite_btn)
+
 
         websiteView.setOnClickListener(){
             val url: String = clickedLabItem!!.Website
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             this.startActivity(intent)
         }
-
-        isLiked = false
-
-        favoriteView.setOnClickListener{
-            if (!isLiked){
-                val animator = ValueAnimator.ofFloat(0.09f,0.69f).setDuration(3000)
-                animator.addUpdateListener { animation: ValueAnimator ->
-                    favoriteView.progress = animation.animatedValue as Float
-                }
-                animator.start()
-                isLiked = true
-            } else {
-                val animator = ValueAnimator.ofFloat(0.72f, 1f).setDuration(3000)
-                animator.addUpdateListener { animation: ValueAnimator ->
-                    favoriteView.progress = animation.animatedValue as Float
-                }
-                animator.start()
-                isLiked = false
+        if(globalVar!="0") {
+            getFromDB()
+        }
+        else{
+            val favoriteView = findViewById<LottieAnimationView>(R.id.favorite_btn)
+            favoriteView.setOnClickListener{
+                Toast.makeText(this, "즐겨찾기 기능은 로그인 후 사용 가능합니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
 
+
+
+    }
+
+    private fun getFromDB() {
+        idList.clear()
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "getFail")
+            }
+            override fun onResponse(call: Call, response: Response) {
+                val test = response.body?.string()?.replace("\"", "")
+                idList.addAll(test?.split(",") as MutableList<String>)
+                val favoriteView = findViewById<LottieAnimationView>(R.id.favorite_btn)
+                runOnUiThread {
+                    var isLiked = true
+                    if (idList.contains(clickedLabItem!!.Id)) {
+                        val animator = ValueAnimator.ofFloat(0.09f, 0.69f).setDuration(0)
+                        animator.addUpdateListener { animation: ValueAnimator ->
+                            favoriteView.progress = animation.animatedValue as Float
+                        }
+                        animator.start()
+                    } else {
+                        isLiked = false
+                    }
+
+                    favoriteView.setOnClickListener {
+                        if (!isLiked) {
+                            val requestBody =
+                                FormBody.Builder().add("labcode", clickedLabItem!!.Id).build()
+                            postThis(requestBody)
+                            val animator = ValueAnimator.ofFloat(0.09f, 0.69f).setDuration(3000)
+                            animator.addUpdateListener { animation: ValueAnimator ->
+                                favoriteView.progress = animation.animatedValue as Float
+                            }
+                            animator.start()
+                            isLiked = true
+                        } else {
+                            deleteThis()
+                            val animator = ValueAnimator.ofFloat(0.72f, 1f).setDuration(3000)
+                            animator.addUpdateListener { animation: ValueAnimator ->
+                                favoriteView.progress = animation.animatedValue as Float
+                            }
+                            animator.start()
+                            isLiked = false
+                        }
+                    }
+                }
+            }
+        })
     }
 
 
@@ -132,4 +189,34 @@ class LabDetailActivity : AppCompatActivity(){
         }
 
     }
+
+    private fun postThis(formBody: RequestBody) {
+        val request = Request.Builder().url(url).post(formBody).build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "postFail")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "postSuccess")
+            }
+        })
+    }
+
+    private fun deleteThis(){
+        val request = Request.Builder().delete().url(url+"${clickedLabItem!!.Id}/").build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "removeFail")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "removeSuccess")
+            }
+        })
+    }
+
+
+
+
 }

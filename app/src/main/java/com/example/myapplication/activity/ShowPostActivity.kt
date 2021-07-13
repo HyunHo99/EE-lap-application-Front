@@ -63,6 +63,7 @@ class ShowPostActivity : AppCompatActivity(){
 
     }
 
+
     private fun postThis(formBody: RequestBody, url: String) {
 
         val request = Request.Builder().url(url).post(formBody).build()
@@ -77,7 +78,7 @@ class ShowPostActivity : AppCompatActivity(){
                 runOnUiThread{
                     commentsList.add(Comments(comments = k.get("content").toString(), time = k.get("create_date").toString(),
                         commentID = k.get("id").toString().toInt(), user = k.get("user").toString()))
-                    val newAdapter = CommentAdapter(applicationContext, commentsList)
+                    val newAdapter = setDeleteFunAdapter()
                     recyclerView.adapter=newAdapter
                 }
                 Log.d(TAG, "postSuccess")
@@ -102,17 +103,7 @@ class ShowPostActivity : AppCompatActivity(){
                     commentsList.add(Comments(comments = k.get("content").toString(), time = k.get("create_date").toString(),
                         commentID = k.get("id").toString().toInt(), user = k.get("user").toString()))
                 }
-                val cAdapter = CommentAdapter(applicationContext, commentsList)
-                cAdapter.itemClick = object : CommentAdapter.ItemClick{
-                    override fun onClick(view: View, position: Int) {
-                        if(commentsList[position].user.equals(globalVar)) {
-                            deleteComment(commentsList[position].commentID)
-                            val intent = intent
-                            finish()
-                            startActivity(intent)
-                        }
-                    }
-                }
+                val cAdapter = setDeleteFunAdapter()
                 runOnUiThread{
                     recyclerView.adapter=cAdapter
                     val lm = LinearLayoutManager(applicationContext)
@@ -175,7 +166,18 @@ class ShowPostActivity : AppCompatActivity(){
         })
     }
 
-
-
+    private fun setDeleteFunAdapter() : CommentAdapter {
+        val newAdapter = CommentAdapter(applicationContext, commentsList)
+        newAdapter.itemClick = object : CommentAdapter.ItemClick{
+            override fun onClick(view: View, position: Int) {
+                if(commentsList[position].user == globalVar) {
+                    deleteComment(commentsList[position].commentID)
+                    commentsList.removeAt(position)
+                    recyclerView.adapter = setDeleteFunAdapter()
+                }
+            }
+        }
+        return newAdapter
+    }
 
 }

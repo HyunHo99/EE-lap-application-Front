@@ -2,6 +2,7 @@ package com.example.myapplication.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.data.Comments
-import com.example.myapplication.data.Posts
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -54,6 +55,9 @@ class CommentAdapter (private val context: Context, private val dataset: ArrayLi
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.WEEK_IN_MILLIS, 1).split(" ")
         holder.commentTimeView.text =test[0]+" "+test[1]
+        if(dataset[position].user==globalVar){
+            holder.deleteButton.setBackgroundColor(Color.RED)
+        }
         if(itemClick!=null) {
             holder.deleteButton.setOnClickListener { v->
                 itemClick?.onClick(v, position)
@@ -64,4 +68,5 @@ class CommentAdapter (private val context: Context, private val dataset: ArrayLi
     override fun getItemCount(): Int {
         return dataset.size
     }
+
 }

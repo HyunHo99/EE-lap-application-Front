@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 
 import android.widget.TextView
 import android.widget.Toast
@@ -20,6 +21,7 @@ import com.example.myapplication.R
 import com.example.myapplication.activity.AddPostActivity
 
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.example.myapplication.activity.SearchPostActivity
 import com.example.myapplication.activity.ShowPostActivity
 import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.Posts
@@ -33,14 +35,18 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import kotlin.math.max
 
 class FragPost : Fragment() {
     val TAG: String = "로그"
     @SuppressLint("SetJavaScriptEnabled")
 
-    private val url = "http://192.249.18.134:80/post"
-    private lateinit var v : View;
+    private val url = "http://192.249.18.134:80/post/main"
+    private lateinit var v : View
+    private lateinit var totalPageText : TextView
 
+    private var maxPageNum = 1
+    private var pageNum = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -52,7 +58,41 @@ class FragPost : Fragment() {
         v = inflater.inflate(R.layout.fragment_post, container, false)
 
         val addPostBt : View = v.findViewById(R.id.bt_addPost)
-        getFromDB(v)
+        //getFromDB(v)
+        val toSearchBt : View = v.findViewById(R.id.bt_toSearch)
+        val toFrontBt : View = v.findViewById(R.id.bt_toFrontPage)
+        val toBackBt : View = v.findViewById(R.id.bt_toBackPage)
+        val inputPage : EditText = v.findViewById(R.id.input_page)
+        val toInputBt : View = v.findViewById(R.id.bt_toInputPage)
+        totalPageText = v.findViewById(R.id.txt_totalpage)
+        inputPage.setText(pageNum.toString())
+
+
+        toFrontBt.setOnClickListener {
+            if(pageNum>1){
+                pageNum-=1
+                inputPage.setText(pageNum.toString())
+                getFromDB(v)
+            }
+        }
+        toBackBt.setOnClickListener {
+            if(pageNum+1<=maxPageNum){
+                pageNum+=1
+                inputPage.setText(pageNum.toString())
+                getFromDB(v)
+            }
+        }
+        toInputBt.setOnClickListener {
+            val inputed = inputPage.text.toString().toInt()
+            if(inputed in 1..maxPageNum){
+                pageNum = inputed
+                getFromDB(v)
+            }
+        }
+        toSearchBt.setOnClickListener {
+            val searchPostActivity = Intent(activity, SearchPostActivity::class.java)
+            startActivity(searchPostActivity)
+        }
 
 
         addPostBt.setOnClickListener{ view ->
@@ -72,19 +112,27 @@ class FragPost : Fragment() {
     private fun getFromDB(view:View){
         val client = OkHttpClient()
         val postsList = ArrayList<Posts>()
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder().url("$url/$pageNum/").build()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_posts)
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(TAG, "getFail")
             }
+            @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call, response: Response) {
                 val test = response.body?.string() ?:""
                 val jsonArray = JSONObject(test).optJSONArray("data") ?: JSONArray()
                 for(i in 0 until jsonArray.length()){
                     val k = jsonArray.getJSONObject(i)
                     postsList.add(Posts(subject = k.get("subject").toString(), time = k.get("create_date").toString(),
-                        postID = k.get("id").toString().toInt()))
+                        postID = k.get("id").toString().toInt(), content = k.get("content").toString()))
+                }
+                val totalPostNum = JSONObject(test).get("totalNum").toString().toInt()
+                if(totalPostNum%10!=0){
+                    maxPageNum = totalPostNum/10+1
+                }
+                else{
+                    maxPageNum = totalPostNum/10
                 }
                 val pAdapter = PostAdapter(requireContext(), postsList)
                 pAdapter.itemClick = object : PostAdapter.ItemClick{
@@ -96,6 +144,7 @@ class FragPost : Fragment() {
                     }
                 }
                 requireActivity().runOnUiThread{
+                    totalPageText.text = "/${maxPageNum}"
                     recyclerView?.adapter=pAdapter
                     val lm = LinearLayoutManager(requireContext())
                     recyclerView.layoutManager = lm

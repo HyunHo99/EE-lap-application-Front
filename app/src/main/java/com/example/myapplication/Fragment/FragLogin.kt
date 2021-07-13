@@ -41,6 +41,7 @@ class FragLogin : Fragment() {
     lateinit var userPhoto : ImageView
     lateinit var signinBt : View
     lateinit var signoutBt : View
+    lateinit var card : View
     lateinit var mGoogleSignInClient : GoogleSignInClient
 
     object ImageLoder{
@@ -72,6 +73,7 @@ class FragLogin : Fragment() {
         userPhoto = view.findViewById(R.id.img_user)
         signinBt = view.findViewById(R.id.bt_signin)
         signoutBt = view.findViewById(R.id.bt_signout)
+        card = view.findViewById(R.id.Login_cardView)
         val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestEmail().build()
         val gsa = GoogleSignIn.getLastSignedInAccount(requireActivity())
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
@@ -87,15 +89,9 @@ class FragLogin : Fragment() {
             requireActivity().runOnUiThread {
                 userNameText.text = gsa.displayName
                 userEmailText.text = gsa.email
-                userEmailText.visibility = View.VISIBLE
-                userNameText.visibility = View.VISIBLE
-                userPhoto.visibility = View.VISIBLE
-                signoutBt.visibility = View.VISIBLE
                 globalVar = gsa.id ?: "0"
-                signoutBt.setOnClickListener { v->
-                    signOut(mGoogleSignInClient)
-                }
             }
+            setUserDataVisible()
             if(gsa.photoUrl!=null) {
                 CoroutineScope(Dispatchers.Main).launch {
                     val bitmap = withContext(Dispatchers.IO) {
@@ -116,6 +112,7 @@ class FragLogin : Fragment() {
         userNameText.visibility = View.GONE
         userPhoto.visibility = View.GONE
         signoutBt.visibility = View.GONE
+        card.visibility = View.GONE
         signinBt.visibility = View.VISIBLE
         globalVar = "0"
         signinBt.setOnClickListener { v ->
@@ -148,19 +145,13 @@ class FragLogin : Fragment() {
                 val personEmail = acct.email
                 val personId = acct.id
                 val personPhoto: Uri? = acct.photoUrl
-                requireActivity().runOnUiThread{
+                requireActivity().runOnUiThread {
                     userNameText.text = personName
                     userEmailText.text = personEmail
-                    userNameText.visibility=View.VISIBLE
-                    userEmailText.visibility=View.VISIBLE
-                    userPhoto.visibility = View.VISIBLE
-                    signinBt.visibility=View.INVISIBLE
-                    signoutBt.visibility = View.VISIBLE
                     globalVar = personId ?: "0"
-                    signoutBt.setOnClickListener { v->
-                        signOut(mGoogleSignInClient)
-                    }
                 }
+                setUserDataVisible()
+
                 if(personPhoto!=null) {
                     CoroutineScope(Dispatchers.Main).launch {
                         val bitmap = withContext(Dispatchers.IO) {
@@ -188,5 +179,19 @@ class FragLogin : Fragment() {
             handleSignInResult(task)
 
         }
+    }
+    private fun setUserDataVisible(){
+        requireActivity().runOnUiThread{
+            userNameText.visibility=View.VISIBLE
+            userEmailText.visibility=View.VISIBLE
+            userPhoto.visibility = View.VISIBLE
+            signinBt.visibility=View.INVISIBLE
+            signoutBt.visibility = View.VISIBLE
+            card.visibility = View.VISIBLE
+            signoutBt.setOnClickListener { v->
+                signOut(mGoogleSignInClient)
+            }
+        }
+
     }
 }

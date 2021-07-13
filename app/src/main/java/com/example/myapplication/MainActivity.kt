@@ -53,8 +53,10 @@ class MainActivity : AppCompatActivity() {
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
         val loader = LabListLoader()
         val initialList = loader.loadLabList(assetManager = resources.assets)
-        listWithFav = loader.loadFavicon(initialList)
         Log.d(TAG, "MainActivity - onCreate() called. listwithFav= ${listWithFav.forEach { lab -> lab.LabImageUrl }}")
+        listWithFav = loader.loadBitmap(loader.loadFavicon(initialList))
+        Log.d(TAG, "MainActivity - onCreate() called. listwithFav= ${listWithFav.forEach { lab -> lab.LabBitmap }}")
+
 
 
         initViewPager()

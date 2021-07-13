@@ -16,5 +16,6 @@ data class Lab(
     val TelProf: String,
     val Website: String,
     val Keywords: MutableList<String>,
-    var LabImageUrl: String
+    var LabImageUrl: String,
+    var LabBitmap: Bitmap?
 ) : Parcelable

@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.R.attr
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -54,7 +53,8 @@ class LabListLoader() {
                     baseInfo.getString("telProf"),
                     baseInfo.getString("website"),
                     keywordsArray,
-                    baseInfo.getString("website")+"/favicon.ico"
+                    baseInfo.getString("website")+"/favicon.ico",
+                    null
                 )
                 loadedLabList.add(tempData)
             }
@@ -101,18 +101,31 @@ class LabListLoader() {
         }
         return loadedLabList
     }
+    val TAG: String = "로그"
 
-    private fun getBitmapFromURL(favSrc: String): Bitmap? {
-        return try {
-            val url = URL(favSrc)
-            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.doInput = true
-            connection.connect()
-            val input: InputStream = connection.inputStream
-            return BitmapFactory.decodeStream(input)
-        } catch (e: IOException) {
-            // Log exception
+    public final fun URL.toBitmap(): Bitmap?{
+        return try{
+            BitmapFactory.decodeStream(openStream())
+        } catch (e: IOException){
             null
         }
     }
+
+    fun loadBitmap(LabList: ArrayList<Lab>):ArrayList<Lab>{
+        for (lab in LabList){
+            val url = URL(lab.LabImageUrl)
+            val result: Deferred<Bitmap?> = GlobalScope.async {
+                url.toBitmap()
+            }
+
+            GlobalScope.launch(Dispatchers.Main) {
+                // show bitmap on image view when available
+                lab.LabBitmap = result.await()
+                Log.d(TAG, "LabListLoader - loadBitmap() called")
+            }
+        }
+        return LabList
+    }
+
+
 }

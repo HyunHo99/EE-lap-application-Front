@@ -77,8 +77,7 @@ class LabAdapter (
         holder.professorView.text = item.Professor
         holder.labNameView.text = item.LabName
         holder.labInitialView.text = item.LabInitial
-        holder.labImg.setImageURI(Uri.parse(item.LabImageUrl))
-        Log.d(TAG, "LabAdapter - onBindViewHolder() called. ${Uri.parse(item.LabImageUrl)}")
+        Glide.with(holder.view.context).load(item.LabBitmap).into(holder.labImg)
 
         var keywordString:String = ""
         for (i in 0 until item.Keywords.size){

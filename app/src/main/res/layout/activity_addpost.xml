@@ -5,19 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/bt_toSearchLab"
-        android:layout_width="38dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="334dp"
-        android:layout_marginBottom="11dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_search_24"
-        app:layout_constraintBottom_toBottomOf="@+id/input_labid"
-        app:layout_constraintStart_toStartOf="@+id/input_labid"
-        app:layout_constraintTop_toTopOf="@+id/input_labid"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/fragname"
         android:layout_width="match_parent"
@@ -67,13 +54,27 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/input_labid"
-        android:layout_width="334dp"
-        android:layout_height="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
         android:hint="관련 연구실 id를 입력하세요"
         app:layout_constraintTop_toBottomOf="@id/fragname"
         tools:layout_editor_absoluteX="16dp" />
 
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/bt_toSearchLab"
+        android:layout_width="38dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="332dp"
+        android:layout_marginBottom="11dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@+id/input_labid"
+        app:layout_constraintStart_toStartOf="@+id/input_labid"
+        app:layout_constraintTop_toTopOf="@+id/input_labid"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"

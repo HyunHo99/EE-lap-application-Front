@@ -37,6 +37,7 @@ class ShowPostActivity : AppCompatActivity(){
     private var userID = "0"
     private lateinit var labRecyclerView :RecyclerView
     private lateinit var rawLabList : ArrayList<Lab>
+    private val adminUserID = listOf<String>("105137147577786092785", "117433474764757616762")
 
 
 
@@ -58,11 +59,15 @@ class ShowPostActivity : AppCompatActivity(){
         postTitle = findViewById<TextView>(R.id.showpost_title)
         postContent = findViewById<TextView>(R.id.showpost_content)
         recyclerView = v.findViewById<RecyclerView>(R.id.showpost_recycler)
+        val backBt = v.findViewById<View>(R.id.bt_back)
 
 
         labRecyclerView = v.findViewById<RecyclerView>(R.id.recycler_showpostlabs)
         rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
 
+        backBt.setOnClickListener {
+            finish()
+        }
 
         getFromDB(url)
 
@@ -137,7 +142,7 @@ class ShowPostActivity : AppCompatActivity(){
                     postContent.text=post.get("content").toString()
                     postTitle.text=post.get("subject").toString()
                     userID = post.get("user").toString()
-                    if(globalVar.equals(userID) && !globalVar.equals("0")) {
+                    if(adminUserID.contains(globalVar)) {
                         deleteBt.visibility = View.VISIBLE
                         deleteBt.setOnClickListener { view ->
                             deleteThis(url)

@@ -56,7 +56,7 @@ class CommentAdapter (private val context: Context, private val dataset: ArrayLi
             DateUtils.WEEK_IN_MILLIS, 1).split(" ")
         holder.commentTimeView.text =test[0]+" "+test[1]
         if(dataset[position].user==globalVar){
-            holder.deleteButton.setBackgroundColor(Color.RED)
+            holder.deleteButton.visibility=View.VISIBLE
         }
         if(itemClick!=null) {
             holder.deleteButton.setOnClickListener { v->

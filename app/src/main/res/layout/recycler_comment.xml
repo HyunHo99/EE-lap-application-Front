@@ -50,9 +50,11 @@
                 android:layout_marginTop="4dp"
                 android:text="삭제"
                 android:textSize="10dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/txt_commentTime"
                 app:layout_constraintStart_toEndOf="@+id/txt_comment"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

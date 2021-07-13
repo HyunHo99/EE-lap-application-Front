@@ -1,9 +1,12 @@
 package com.example.myapplication.activity
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -46,6 +49,7 @@ class SearchPostActivity : AppCompatActivity() {
         val postsList = ArrayList<Posts>()
         val request = Request.Builder().url(URL).build()
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_searched)
+        val noImg = findViewById<ImageView>(R.id.img_noimg)
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(TAG, "searchFail")
@@ -65,6 +69,16 @@ class SearchPostActivity : AppCompatActivity() {
                         )
                     )
                 }
+                if(postsList.size==0){
+                    runOnUiThread {
+                        noImg.visibility = View.VISIBLE
+                    }
+                }
+                else{
+                    runOnUiThread {
+                        noImg.visibility = View.GONE
+                    }
+                }
                 val pAdapter = PostAdapter(applicationContext, postsList)
                 pAdapter.itemClick = object : PostAdapter.ItemClick {
                     override fun onClick(view: View, position: Int) {
@@ -72,7 +86,7 @@ class SearchPostActivity : AppCompatActivity() {
                             Intent(applicationContext, ShowPostActivity::class.java).apply {
                                 putExtra("postID", postsList[position].postID)
                             }
-                        applicationContext.startActivity(intent)
+                        startActivity(intent)
                     }
                 }
                 runOnUiThread {

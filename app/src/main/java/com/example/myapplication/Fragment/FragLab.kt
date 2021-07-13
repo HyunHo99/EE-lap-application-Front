@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,7 @@ class FragLab : Fragment() {
         val layout = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewDiv.layoutManager = layout
         recyclerViewDiv.setHasFixedSize(true)
-        //getFromDB()
+
 
 //        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
 //        val idList: MutableList<String> = mutableListOf("cm1", "cm2", "cp5")
@@ -129,8 +130,13 @@ class FragLab : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        url = "http://192.249.18.134:80/lab/$globalVar/"
-        getFromDB()
+        if(globalVar!="0") {
+            url = "http://192.249.18.134:80/lab/$globalVar/"
+            getFromDB()
+        }
+        else{
+            Toast.makeText(context, "즐겨찾기 기능은 로그인 후 사용 가능합니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 }
 

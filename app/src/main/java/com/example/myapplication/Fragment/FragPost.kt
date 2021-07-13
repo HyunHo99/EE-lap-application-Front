@@ -20,6 +20,7 @@ import com.example.myapplication.R
 import com.example.myapplication.activity.AddPostActivity
 
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.example.myapplication.activity.SearchPostActivity
 import com.example.myapplication.activity.ShowPostActivity
 import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.Posts
@@ -53,8 +54,13 @@ class FragPost : Fragment() {
 
         val addPostBt : View = v.findViewById(R.id.bt_addPost)
         //getFromDB(v)
+        val toSearchBt : View = v.findViewById(R.id.bt_toSearch)
 
 
+        toSearchBt.setOnClickListener {
+            val searchPostActivity = Intent(activity, SearchPostActivity::class.java)
+            startActivity(searchPostActivity)
+        }
         addPostBt.setOnClickListener{ view ->
             if(globalVar.equals("0")){
                 Toast.makeText(activity, "게시물 등록은 로그인 후 가능합니다", Toast.LENGTH_SHORT).show()

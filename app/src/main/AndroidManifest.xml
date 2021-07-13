@@ -33,6 +33,7 @@
 
         <activity android:name=".activity.AddPostActivity"/>
         <activity android:name=".activity.ShowPostActivity"/>
+        <activity android:name=".activity.SearchPostActivity"/>
 
     </application>
 

@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
@@ -27,6 +28,7 @@ import com.example.myapplication.Fragment.FragSurf2
 import com.example.myapplication.Fragment.FragSurf3
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.globalVar
 import com.example.myapplication.adapter.LabAdapter
 import com.example.myapplication.data.Keyword
 import com.example.myapplication.data.Lab
@@ -67,8 +69,15 @@ class LabDetailActivity : AppCompatActivity(){
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             this.startActivity(intent)
         }
-
-        getFromDB()
+        if(globalVar!="0") {
+            getFromDB()
+        }
+        else{
+            val favoriteView = findViewById<LottieAnimationView>(R.id.favorite_btn)
+            favoriteView.setOnClickListener{
+                Toast.makeText(this, "즐겨찾기 기능은 로그인 후 사용 가능합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
 

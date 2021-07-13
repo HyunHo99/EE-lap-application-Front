@@ -30,9 +30,10 @@
         </activity>
         <activity android:name=".activity.LabDetailActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
-
-        <activity android:name=".activity.AddPostActivity"/>
-        <activity android:name=".activity.ShowPostActivity"/>
+        <activity android:name=".activity.AddPostActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+        <activity android:name=".activity.ShowPostActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity android:name=".activity.SearchPostActivity"/>
 
     </application>

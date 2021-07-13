@@ -51,7 +51,8 @@ class KeywordAdapter(
             intent.putExtra("clickedKeywordName",keywordName)
             intent.putExtra("clickedKeywordFreq", keywordFreq)
             Log.d(TAG, "KeywordAdapter - onBindViewHolder() called, intent=$intent")
-            context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
+//            context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
+            context.startActivity(intent)
 
         }
     }

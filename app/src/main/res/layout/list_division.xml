@@ -16,10 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:foreground="?selectableItemBackground"
+        android:layout_height="115dp"
         android:background="@drawable/style_round_rectangle"
-        android:backgroundTint="#E0F2F1"
         android:layout_marginHorizontal="16dp">
     </androidx.appcompat.widget.AppCompatImageButton>
     <TextView
@@ -30,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/div_button"
         android:layout_marginLeft="10dp"
         android:text="Computer"
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:textSize="11sp"
         android:layout_marginTop="10dp"
         android:textColor="#26C6DA"/>
@@ -43,7 +41,7 @@
         android:layout_marginLeft="10dp"
         android:text="컴퓨터"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textAlignment="viewStart"
         android:textColor="#00ACC1"/>
     <ImageView

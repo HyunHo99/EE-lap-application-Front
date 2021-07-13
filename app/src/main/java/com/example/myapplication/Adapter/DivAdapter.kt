@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.activity.SurfActivity
@@ -49,7 +51,8 @@ class DivAdapter (
         holder.divNameEng.setTextColor(colorSubTitle)
         holder.divImg.setImageResource(item.DivImgId)
 
-        holder.divButtonView.setBackgroundColor(colorBack)
+        holder.divButtonView.background.setTint(colorBack)
+
 
         Log.d(TAG, "DivAdapter - onBindViewHolder() called, position=$position, div=$holder.divView.text")
 

@@ -4,24 +4,17 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.result.ActivityResult
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.activity.SurfActivity
-import com.example.myapplication.data.DataDiv
-import com.example.myapplication.model.Division
-import androidx.fragment.app.Fragment
-import com.example.myapplication.LabListLoader
+import com.example.myapplication.data.Division
 
 class DivAdapter (
     private val context: Context,
@@ -29,9 +22,10 @@ class DivAdapter (
     ): RecyclerView.Adapter<DivAdapter.DivViewHolder>() {
 
     class DivViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-        val divView: TextView = view.findViewById(R.id.div_name)
+        val divNameKor: TextView = view.findViewById(R.id.div_name)
+        val divNameEng: TextView = view.findViewById(R.id.div_name_eng)
+        val divImg: ImageView = view.findViewById(R.id.div_img)
         val divButtonView: AppCompatImageButton = view.findViewById(R.id.div_button)
-//        val divImg : ImageView = view.findViewById(R.id.)
 
     }
 
@@ -45,7 +39,18 @@ class DivAdapter (
         val item = dataset[position]
         val TAG: String = "로그"
 
-        holder.divView.setText(item.DivisionResourceId)
+        val colorBack = context.getColor(item.DivColorBackId)
+        val colorTitle = context.getColor(item.DivColorTitleId)
+        val colorSubTitle = context.getColor(item.DivColorSubtitleId)
+
+        holder.divNameKor.setText(item.DivisionResourceId)
+        holder.divNameKor.setTextColor(colorTitle)
+        holder.divNameEng.setText(item.DivisionEngResourceId)
+        holder.divNameEng.setTextColor(colorSubTitle)
+        holder.divImg.setImageResource(item.DivImgId)
+
+        holder.divButtonView.setBackgroundColor(colorBack)
+
         Log.d(TAG, "DivAdapter - onBindViewHolder() called, position=$position, div=$holder.divView.text")
 
         holder.divButtonView.setOnClickListener{
@@ -53,7 +58,6 @@ class DivAdapter (
             val divisionFreq: Int = item.DivisionFreqId
             val intent = Intent(context, SurfActivity::class.java)
 
-            intent.putExtra("clickedKeywordName",holder.divView.text.toString())
             intent.putExtra("clickedKeywordFreq", divisionFreq)
             Log.d(TAG, "DivAdapter - onBindViewHolder() called, intent=$intent")
             context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())

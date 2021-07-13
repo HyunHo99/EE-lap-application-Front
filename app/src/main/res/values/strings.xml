@@ -9,6 +9,14 @@
     <string name="div_wave">전파</string>
     <string name="div_devi">소자</string>
     <string name="div_sign">신호</string>
+
+    <string name="div_comp_eng">Computer</string>
+    <string name="div_comm_eng">Communication</string>
+    <string name="div_circ_eng">Circuit</string>
+    <string name="div_wave_eng">Wave</string>
+    <string name="div_devi_eng">Device</string>
+    <string name="div_sign_eng">Signal</string>
+
     <string name="test">인공지능</string>
 
     <string name="div_color">null</string>

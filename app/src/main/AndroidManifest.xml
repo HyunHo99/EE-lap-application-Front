@@ -34,8 +34,10 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity android:name=".activity.ShowPostActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
-        <activity android:name=".activity.SearchPostActivity"/>
-        <activity android:name=".activity.LabSearchActivity"/>
+        <activity android:name=".activity.SearchPostActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+        <activity android:name=".activity.LabSearchActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
 
     </application>
 

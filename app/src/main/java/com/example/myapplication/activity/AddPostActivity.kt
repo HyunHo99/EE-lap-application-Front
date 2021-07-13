@@ -28,6 +28,7 @@ class AddPostActivity : AppCompatActivity() {
         val subjectInput : EditText = findViewById(R.id.input_subject)
         labIDInput  = findViewById(R.id.input_labid)
         val searchBt : View = findViewById(R.id.bt_toSearchLab)
+        val backBt  = findViewById<View>(R.id.search_btn)
 
         submitBt.setOnClickListener{ view ->
             val content = contentInput.text.toString()
@@ -43,6 +44,9 @@ class AddPostActivity : AppCompatActivity() {
         searchBt.setOnClickListener {
             val intent = Intent(applicationContext, LabSearchActivity::class.java)
             startActivityForResult(intent, CODE)
+        }
+        backBt.setOnClickListener {
+            finish()
         }
 
 

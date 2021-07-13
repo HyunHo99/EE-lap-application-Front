@@ -77,7 +77,21 @@ class LabAdapter (
         holder.professorView.text = item.Professor
         holder.labNameView.text = item.LabName
         holder.labInitialView.text = item.LabInitial
-        Glide.with(holder.view.context).load(item.LabBitmap).into(holder.labImg)
+
+        val imageid = when(item.Division){
+            "CP" -> R.drawable.ic_div_cp
+            "CM" -> R.drawable.ic_div_cm
+            "CC" -> R.drawable.ic_div_cc
+            "DV" -> R.drawable.ic_div_dv
+            "WV" -> R.drawable.ic_div_wv
+            else -> R.drawable.ic_div_sn
+        }
+
+        Glide.with(holder.view.context)
+            .load(item.LabBitmap)
+            .fitCenter()
+            .fallback(imageid)
+            .into(holder.labImg)
 
         var keywordString:String = ""
         for (i in 0 until item.Keywords.size){

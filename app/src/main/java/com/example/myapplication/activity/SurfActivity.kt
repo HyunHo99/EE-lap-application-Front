@@ -4,14 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.adapter.FragmentAdapter
 import com.example.myapplication.Fragment.FragSurf1
 import com.example.myapplication.Fragment.FragSurf2
 import com.example.myapplication.Fragment.FragSurf3
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -35,6 +39,13 @@ class SurfActivity : AppCompatActivity(){
         clickedKeywordFreq = intentSurfActivity.extras?.getInt("clickedKeywordFreq")
         Log.d(TAG, "SurfActivity - onCreate() called, clickedKeyword=$clickedKeywordName")
         init()
+
+        val homeView = findViewById<AppCompatImageButton>(R.id.home_btn)
+
+        homeView.setOnClickListener(){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val backBtn : View = findViewById(R.id.back_btn)
         backBtn.setOnClickListener {

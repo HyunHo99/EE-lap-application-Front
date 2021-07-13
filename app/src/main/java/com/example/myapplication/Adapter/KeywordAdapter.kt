@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.activity.SurfActivity
 import com.example.myapplication.data.Keyword
@@ -27,6 +29,7 @@ class KeywordAdapter(
 
     class KeywordViewHolder(val view: View) : RecyclerView.ViewHolder(view){
         val keywordView: TextView = view.findViewById(R.id.text_keyword_only)
+        val keywordImg: AppCompatImageView = view.findViewById(R.id.keyword_img)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeywordViewHolder {
@@ -38,6 +41,20 @@ class KeywordAdapter(
     override fun onBindViewHolder(holder: KeywordViewHolder, position: Int) {
         val item = dataset[position]
         holder.keywordView.text = item.KeywordName
+
+        val imageid = when(item.KeywordFreq % 6){
+            4 -> R.drawable.ic_div_cp
+            3 -> R.drawable.ic_div_cm
+            2 -> R.drawable.ic_div_cc
+            1 -> R.drawable.ic_div_dv
+            0 -> R.drawable.ic_div_wv
+            else -> R.drawable.ic_div_sn
+        }
+
+        Glide.with(holder.view.context)
+            .load(imageid)
+            .fitCenter()
+            .into(holder.keywordImg)
 
         holder.view.setOnClickListener {
             setPosition(position)

@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic='true'>
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +37,9 @@
         <activity android:name=".activity.SearchPostActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity android:name=".activity.LabSearchActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+
+        <activity android:name=".activity.LoadingActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
 
     </application>

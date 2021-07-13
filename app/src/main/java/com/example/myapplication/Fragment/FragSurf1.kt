@@ -37,7 +37,6 @@ class FragSurf1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.lab_recycler)
         val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
-        Log.d(TAG, "FragSurf1 - onViewCreated() called. clickedKeyword from Bundle: $clickedKeyword")
 
         val newLabList = clickedKeyword?.let { filterListByKeyword(it, rawLabList) }
 

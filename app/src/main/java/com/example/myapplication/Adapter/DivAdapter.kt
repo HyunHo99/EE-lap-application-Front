@@ -62,6 +62,7 @@ class DivAdapter (
             val intent = Intent(context, SurfActivity::class.java)
 
             intent.putExtra("clickedKeywordFreq", divisionFreq)
+            intent.putExtra("clickedKeywordName",holder.divNameKor.text.toString())
             Log.d(TAG, "DivAdapter - onBindViewHolder() called, intent=$intent")
             context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle())
         }

@@ -1,10 +1,11 @@
 package com.example.myapplication.data
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Lab (
+data class Lab(
     val Professor: String,
     val Id: String,
     val Division: String,
@@ -14,5 +15,6 @@ data class Lab (
     val LocationLab: String,
     val TelProf: String,
     val Website: String,
-    val Keywords: MutableList<String>
+    val Keywords: MutableList<String>,
+    var LabImageUrl: String
 ) : Parcelable

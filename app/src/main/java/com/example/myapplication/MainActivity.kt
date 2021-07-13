@@ -13,6 +13,8 @@ import com.example.myapplication.Fragment.FragLab
 import com.example.myapplication.Fragment.FragLogin
 import com.example.myapplication.Fragment.FragData
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
+import com.example.myapplication.data.Lab
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     var navigation: BottomNavigationView ?= null
     var vpMain: ViewPager2 ?= null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
@@ -48,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         navigation = findViewById<BottomNavigationView>(R.id.navigation)
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
+        val loader = LabListLoader()
+        val initialList = loader.loadLabList(assetManager = resources.assets)
+        listWithFav = loader.loadFavicon(initialList)
+        Log.d(TAG, "MainActivity - onCreate() called. listwithFav= ${listWithFav.forEach { lab -> lab.LabImageUrl }}")
 
 
         initViewPager()

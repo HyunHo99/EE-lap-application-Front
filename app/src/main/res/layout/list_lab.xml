@@ -21,7 +21,6 @@
             android:layout_marginVertical="10dp"
             android:layout_marginRight="13dp"
             android:layout_marginLeft="16dp"
-            android:background="@drawable/style_round_rectangle"
             />
 
         <TextView

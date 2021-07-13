@@ -4,19 +4,34 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.activity.LabDetailActivity
 import com.example.myapplication.data.Lab
 import com.xiaweizi.marquee.MarqueeTextView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.FileNotFoundException
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class LabAdapter (
     private val context: Context,
@@ -45,6 +60,7 @@ class LabAdapter (
         val labNameView: TextView = view.findViewById(R.id.text_lab)
         val labInitialView: TextView = view.findViewById(R.id.text_lab_initial)
         val keywordView: MarqueeTextView = view.findViewById(R.id.text_keyword)
+        val labImg: AppCompatImageView = view.findViewById(R.id.lab_img)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabViewHolder {
@@ -61,7 +77,8 @@ class LabAdapter (
         holder.professorView.text = item.Professor
         holder.labNameView.text = item.LabName
         holder.labInitialView.text = item.LabInitial
-
+        holder.labImg.setImageURI(Uri.parse(item.LabImageUrl))
+        Log.d(TAG, "LabAdapter - onBindViewHolder() called. ${Uri.parse(item.LabImageUrl)}")
 
         var keywordString:String = ""
         for (i in 0 until item.Keywords.size){

@@ -14,21 +14,12 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.example.myapplication.adapter.KeywordAdapter
-import com.example.myapplication.adapter.DivAdapter
-import com.example.myapplication.adapter.FragmentAdapter
-import com.example.myapplication.adapter.KeywordAdapter
-import com.example.myapplication.Fragment.FragSurf1
-import com.example.myapplication.Fragment.FragSurf2
-import com.example.myapplication.Fragment.FragSurf3
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
-import com.example.myapplication.adapter.LabAdapter
+import com.example.myapplication.adapter.KeywordAdapter
 import com.example.myapplication.data.Keyword
 import com.example.myapplication.data.Lab
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import okhttp3.*
 import java.io.IOException
 

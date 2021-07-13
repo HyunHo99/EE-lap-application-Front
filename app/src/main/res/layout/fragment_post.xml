@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/search_btn"
+        android:id="@+id/bt_toSearch"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_baseline_search_24"
@@ -41,7 +41,7 @@
         android:layout_height="48dp"
         android:src="@drawable/ic_baseline_post_add_24"
         android:layout_marginRight="4dp"
-        app:layout_constraintEnd_toStartOf="@id/search_btn"
+        app:layout_constraintEnd_toStartOf="@id/bt_toSearch"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragname"
         android:background="@android:color/transparent" />
@@ -52,5 +52,50 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fragname"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:id="@+id/bt_toFrontPage"
+            >
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <EditText
+            android:id="@+id/input_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="0"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/txt_totalpage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="/ 0"
+            android:textSize="16sp"
+
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/bt_toInputPage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_round_check_circle_24"
+            android:background="@android:color/transparent"
+            android:layout_weight="1"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:id="@+id/bt_toBackPage"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

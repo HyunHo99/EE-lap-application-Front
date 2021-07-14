@@ -17,16 +17,12 @@ import com.example.myapplication.adapter.LabAdapter
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
-import com.example.myapplication.activity.ShowPostActivity
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
 import com.example.myapplication.activity.SurfActivity
-import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.data.DataDiv
 import com.example.myapplication.data.Lab
-import com.example.myapplication.model.Division
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.example.myapplication.data.Division
 import okhttp3.*
-import org.json.JSONArray
-import org.json.JSONObject
 import java.io.IOException
 
 class FragLab : Fragment() {
@@ -113,7 +109,7 @@ class FragLab : Fragment() {
             override fun onResponse(call: Call, response: Response) {
                 val test = response.body?.string()?.replace("\"","")
                 idList.addAll(test?.split(",") as MutableList<String>)
-                val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
+                val rawLabList = listWithFav
                 val favLabList = getFavLabListById(idList, rawLabList)
                 val recyclerViewFav = requireView().findViewById<RecyclerView>(R.id.favlab_recycler)
                 val flAdapter = LabAdapter(requireContext(), favLabList)

@@ -17,11 +17,12 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/lab_img"
+            android:background="@drawable/style_round_rectangle"
             android:layout_alignParentLeft="true"
             android:layout_marginVertical="10dp"
+            android:backgroundTint="@android:color/transparent"
             android:layout_marginRight="13dp"
             android:layout_marginLeft="16dp"
-            android:background="@drawable/style_round_rectangle"
             />
 
         <TextView

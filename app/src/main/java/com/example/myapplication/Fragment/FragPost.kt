@@ -44,6 +44,7 @@ class FragPost : Fragment() {
     private val url = "http://192.249.18.134:80/post/main"
     private lateinit var v : View
     private lateinit var totalPageText : TextView
+    private val adminUserID = listOf<String>("105137147577786092785", "117433474764757616762")
 
     private var maxPageNum = 1
     private var pageNum = 1
@@ -96,8 +97,8 @@ class FragPost : Fragment() {
 
 
         addPostBt.setOnClickListener{ view ->
-            if(globalVar.equals("0")){
-                Toast.makeText(activity, "게시물 등록은 로그인 후 가능합니다", Toast.LENGTH_SHORT).show()
+            if(!adminUserID.contains(globalVar)){
+                Toast.makeText(activity, "게시물 등록은 관리자만 가능합니다", Toast.LENGTH_SHORT).show()
             }
             else {
                 val intent = Intent(activity, AddPostActivity::class.java)

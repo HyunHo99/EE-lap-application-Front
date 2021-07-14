@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.adapter.KeywordAdapter
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
 import com.example.myapplication.data.Keyword
 import com.example.myapplication.data.Lab
 
@@ -37,14 +39,13 @@ class FragSurf2 : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.keyword_recycler)
-        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
-        val newLabList = clickedKeyword?.let { filterListByKeyword(it, rawLabList) }
+        val newLabList = clickedKeyword?.let { filterListByKeyword(it, listWithFav) }
         var newKeywordList: ArrayList<Keyword> = ArrayList()
         if (clickedKeyword!=null && newLabList!=null)  {
             newKeywordList = makeListOfKeyword(clickedKeyword!!, newLabList)
         }
 
-        getKeywordFreq(newKeywordList, rawLabList)
+        getKeywordFreq(newKeywordList, listWithFav)
 
         val kAdapter = KeywordAdapter(requireContext(), newKeywordList)
         recyclerView.adapter = kAdapter

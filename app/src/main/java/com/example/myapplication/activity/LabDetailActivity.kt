@@ -11,24 +11,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.example.myapplication.adapter.KeywordAdapter
-import com.example.myapplication.adapter.DivAdapter
-import com.example.myapplication.adapter.FragmentAdapter
-import com.example.myapplication.adapter.KeywordAdapter
-import com.example.myapplication.Fragment.FragSurf1
-import com.example.myapplication.Fragment.FragSurf2
-import com.example.myapplication.Fragment.FragSurf3
+import com.bumptech.glide.Glide
 import com.example.myapplication.LabListLoader
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
-import com.example.myapplication.adapter.LabAdapter
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
+import com.example.myapplication.adapter.KeywordAdapter
 import com.example.myapplication.data.Keyword
 import com.example.myapplication.data.Lab
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import okhttp3.*
 import java.io.IOException
 
@@ -57,7 +52,28 @@ class LabDetailActivity : AppCompatActivity(){
         val websiteView = findViewById<AppCompatButton>(R.id.web_btn)
         val locationView = findViewById<AppCompatImageButton>(R.id.location_btn)
         val telView = findViewById<AppCompatImageButton>(R.id.call_btn)
+        val homeView = findViewById<AppCompatImageButton>(R.id.home_btn)
 
+        homeView.setOnClickListener(){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        locationView.setOnClickListener(){
+            val locationLab: String = clickedLabItem!!.LocationLab
+            val locationProf: String = clickedLabItem!!.LocationProf
+            Toast.makeText(this, "연구실: {$locationLab}\n교수님: {$locationProf}", Toast.LENGTH_LONG).show()
+        }
+
+        telView.setOnClickListener(){
+            Toast.makeText(this,"길게 누르면 교수님 오피스 전화로 이동해요.", Toast.LENGTH_SHORT).show()
+        }
+        telView.setOnLongClickListener{
+            val telNumber: String = clickedLabItem!!.TelProf.toString()
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:042350"+telNumber))
+            startActivity(intent)
+            return@setOnLongClickListener true
+        }
 
         websiteView.setOnClickListener(){
             val url: String = clickedLabItem!!.Website
@@ -73,7 +89,6 @@ class LabDetailActivity : AppCompatActivity(){
                 Toast.makeText(this, "즐겨찾기 기능은 로그인 후 사용 가능합니다.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
 
 
@@ -136,6 +151,7 @@ class LabDetailActivity : AppCompatActivity(){
         val professorTextView = findViewById<TextView>(R.id.labdetail_professor)
         val labTextView = findViewById<TextView>(R.id.labdetail_labname)
         val divisionTextView = findViewById<TextView>(R.id.text_division)
+        val divImg = findViewById<AppCompatImageView>(R.id.div_img)
 
         professorTextView.text = clickedLabItem?.Professor
         labTextView.text = clickedLabItem?.LabName
@@ -147,6 +163,21 @@ class LabDetailActivity : AppCompatActivity(){
             "DV" -> "소자"
             else -> "전파"
         }
+
+        val divimgid: Int = when(clickedLabItem?.Division){
+            "CP" -> R.drawable.ic_div_cp
+            "CM" -> R.drawable.ic_div_cm
+            "CC" -> R.drawable.ic_div_cc
+            "SN" -> R.drawable.ic_div_sn
+            "DV" -> R.drawable.ic_div_dv
+            else -> R.drawable.ic_div_wv
+        }
+
+        Glide.with(this)
+            .load(divimgid)
+            .fitCenter()
+            .into(divImg)
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.keyword_recycler)
         val keywordOfLab = makeKeywordArray(clickedLabItem!!.Keywords)
@@ -171,8 +202,7 @@ class LabDetailActivity : AppCompatActivity(){
             )
             keywordArrayList.add(tempData)
         }
-        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
-        getKeywordFreq(keywordArrayList, rawLabList)
+        getKeywordFreq(keywordArrayList, listWithFav)
         Log.d(TAG, "LabDetailActivity - makeKeywordArray() called. keywordarraylist = $keywordArrayList")
         return keywordArrayList
     }

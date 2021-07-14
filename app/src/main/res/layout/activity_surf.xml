@@ -17,12 +17,25 @@
         android:id="@+id/back_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        android:src="@drawable/ic_round_arrow_back_ios_24"
+        android:tint="@color/gray_icon"
         android:layout_marginLeft="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/titlebar"
         android:background="@android:color/transparent" />
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/home_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_round_home_24"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/titlebar"
+        android:background="@android:color/transparent"
+        android:tint="@color/gray_icon"
+        />
 
 <!--<ScrollView-->
 <!--        android:layout_width="match_parent"-->
@@ -45,7 +58,7 @@
         android:id="@+id/parent_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="인공지능 /"
+        android:text="전체 /"
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:textColor="@color/text_subtitle"

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.adapter.LabAdapter
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.R
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
 import com.example.myapplication.data.Lab
 
 class FragSurf1 : Fragment() {
@@ -36,8 +37,9 @@ class FragSurf1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = requireView().findViewById<RecyclerView>(R.id.lab_recycler)
-        val rawLabList = LabListLoader().loadLabList(assetManager = resources.assets)
-        Log.d(TAG, "FragSurf1 - onViewCreated() called. clickedKeyword from Bundle: $clickedKeyword")
+        val rawLabList0 = LabListLoader().loadLabList(assetManager = resources.assets)
+        val rawLabList = listWithFav
+        Log.d(TAG, "FragSurf1 - onViewCreated() called, rawlablist=$rawLabList")
 
         val newLabList = clickedKeyword?.let { filterListByKeyword(it, rawLabList) }
 

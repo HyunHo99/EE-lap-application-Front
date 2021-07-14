@@ -1,9 +1,13 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Fragment.FragPost
@@ -12,10 +16,14 @@ import com.example.myapplication.Fragment.FragLab
 
 import com.example.myapplication.Fragment.FragLogin
 import com.example.myapplication.Fragment.FragData
+import com.example.myapplication.activity.LoadingActivity
 import com.example.myapplication.activity.MyGlobal.Companion.globalVar
+import com.example.myapplication.activity.MyGlobal.Companion.listWithFav
+import com.example.myapplication.data.Lab
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.delay
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     var navigation: BottomNavigationView ?= null
     var vpMain: ViewPager2 ?= null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "MainActivity - onCreate() called")
         super.onCreate(savedInstanceState)
@@ -49,9 +58,16 @@ class MainActivity : AppCompatActivity() {
         navigation = findViewById<BottomNavigationView>(R.id.navigation)
         vpMain = findViewById<ViewPager2>(R.id.vp_main)
 
-
         initViewPager()
         initNavigationBar()
+
+        if (listWithFav.size==0) {
+            Log.d(TAG, "MainActivity - onCreate() called. listWithFav.size=${listWithFav.size} ")
+            val intent = Intent(this, LoadingActivity::class.java)
+            Log.d(TAG, "MainActivity - onCreate() called. intent=$intent")
+            startActivity(intent)
+        }
+
 
     }
 

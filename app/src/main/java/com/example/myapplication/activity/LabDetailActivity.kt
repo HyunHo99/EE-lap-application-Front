@@ -91,9 +91,6 @@ class LabDetailActivity : AppCompatActivity(){
 
 
 
-
-
-
     }
 
     private fun getFromDB() {

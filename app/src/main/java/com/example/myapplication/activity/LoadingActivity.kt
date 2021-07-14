@@ -24,8 +24,7 @@ class LoadingActivity: AppCompatActivity() {
         Log.d(TAG, "MainActivity - onCreate() called. listwithFav= ${MyGlobal.listWithFav.forEach { lab -> lab.LabImageUrl }}")
         MyGlobal.listWithFav = loader.loadBitmap(loader.loadFavicon(initialList))
         Log.d(TAG, "MainActivity - onCreate() called. listwithFav= ${MyGlobal.listWithFav.forEach { lab -> lab.LabBitmap }}")
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        finish()
 
     }
 

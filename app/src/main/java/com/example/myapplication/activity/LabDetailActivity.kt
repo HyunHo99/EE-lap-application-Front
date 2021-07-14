@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.example.myapplication.LabListLoader
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
@@ -152,6 +153,7 @@ class LabDetailActivity : AppCompatActivity(){
         val professorTextView = findViewById<TextView>(R.id.labdetail_professor)
         val labTextView = findViewById<TextView>(R.id.labdetail_labname)
         val divisionTextView = findViewById<TextView>(R.id.text_division)
+        val divImg = findViewById<AppCompatImageButton>(R.id.div_img)
 
         professorTextView.text = clickedLabItem?.Professor
         labTextView.text = clickedLabItem?.LabName
@@ -163,6 +165,21 @@ class LabDetailActivity : AppCompatActivity(){
             "DV" -> "소자"
             else -> "전파"
         }
+
+        val divimgid: Int = when(clickedLabItem?.Division){
+            "CP" -> R.drawable.ic_div_cp
+            "CM" -> R.drawable.ic_div_cm
+            "CC" -> R.drawable.ic_div_cc
+            "SN" -> R.drawable.ic_div_sn
+            "DV" -> R.drawable.ic_div_dv
+            else -> R.drawable.ic_div_wv
+        }
+
+        Glide.with(this)
+            .load(divimgid)
+            .fitCenter()
+            .into(divImg)
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.keyword_recycler)
         val keywordOfLab = makeKeywordArray(clickedLabItem!!.Keywords)

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -150,7 +151,7 @@ class LabDetailActivity : AppCompatActivity(){
         val professorTextView = findViewById<TextView>(R.id.labdetail_professor)
         val labTextView = findViewById<TextView>(R.id.labdetail_labname)
         val divisionTextView = findViewById<TextView>(R.id.text_division)
-        val divImg = findViewById<AppCompatImageButton>(R.id.div_img)
+        val divImg = findViewById<AppCompatImageView>(R.id.div_img)
 
         professorTextView.text = clickedLabItem?.Professor
         labTextView.text = clickedLabItem?.LabName
